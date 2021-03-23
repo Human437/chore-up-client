@@ -16,9 +16,9 @@ export default class MyChores extends React.Component {
         <main role="main">
           <h2>Chores</h2>
           <ul>
-            <li>Washing the dishes</li>
-            <li>Making dinner</li>
-            <li>Vacuum the carpet</li>
+            <li>Washing the dishes <button>Mark As Done</button></li>
+            <li>Making dinner <button>Mark As Done</button></li>
+            <li>Vacuum the carpet <button>Mark As Done</button></li>
           </ul>
         </main>
         <footer role="content-info">Footer</footer>
