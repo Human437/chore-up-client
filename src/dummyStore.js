@@ -24,6 +24,8 @@ export default {
       ],
       "level":1,
       "xp-till-level-up":100,
+      "email":"hwpyxoutfugfqbusvz@twzhhq.com",
+      "hashedPassword":"$2a$10$l1mqfAFPUolxGgJKL5tXHu4PUSoBNoD0JlM45RsBcaIcWkPa2UD0C",
     },
     {
       "id":2,
@@ -34,6 +36,8 @@ export default {
       ],
       "level":1,
       "xp-till-level-up":100,
+      "email":"hwpyxoutfugfqbusvz@twzhhq.com",
+      "hashedPassword":"$2a$10$l1mqfAFPUolxGgJKL5tXHu4PUSoBNoD0JlM45RsBcaIcWkPa2UD0C",
     },
     {
       "id":3,
@@ -44,6 +48,8 @@ export default {
       ],
       "level":1,
       "xp-till-level-up":100,
+      "email":"hwpyxoutfugfqbusvz@twzhhq.com",
+      "hashedPassword":"$2a$10$l1mqfAFPUolxGgJKL5tXHu4PUSoBNoD0JlM45RsBcaIcWkPa2UD0C",
     },
     {
       "id":4,
@@ -54,6 +60,8 @@ export default {
       ],
       "level":1,
       "xp-till-level-up":100,
+      "email":"hwpyxoutfugfqbusvz@twzhhq.com",
+      "hashedPassword":"$2a$10$l1mqfAFPUolxGgJKL5tXHu4PUSoBNoD0JlM45RsBcaIcWkPa2UD0C",
     },
     {
       "id":5,
@@ -64,6 +72,8 @@ export default {
       ],
       "level":1,
       "xp-till-level-up":100,
+      "email":"hwpyxoutfugfqbusvz@twzhhq.com",
+      "hashedPassword":"$2a$10$l1mqfAFPUolxGgJKL5tXHu4PUSoBNoD0JlM45RsBcaIcWkPa2UD0C",
     },
     {
       "id":6,
@@ -74,6 +84,8 @@ export default {
       ],
       "level":1,
       "xp-till-level-up":100,
+      "email":"hwpyxoutfugfqbusvz@twzhhq.com",
+      "hashedPassword":"$2a$10$l1mqfAFPUolxGgJKL5tXHu4PUSoBNoD0JlM45RsBcaIcWkPa2UD0C",
     },
   ]
 }
