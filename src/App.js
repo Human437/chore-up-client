@@ -7,8 +7,9 @@ import Management from "./management/management";
 import MyChores from "./my-chores/my-chores";
 import SignIn from "./sign-in/sign-in";
 import SignUp from "./sign-up/sign-up";
-import NavBar from './navbar/navbar';
-import HomePage from './home-page/home-page'
+import NavBar from "./navbar/navbar";
+import HomePage from "./home-page/home-page";
+import MyLevel from "./my-level/my-level";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ export default class App extends React.Component {
           <Route path="/create-a-chore" component={CreateAChore} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
+          <Route path="/my-level" component={MyLevel} />
         </main>
       </ChoreUpContext.Provider>
     );

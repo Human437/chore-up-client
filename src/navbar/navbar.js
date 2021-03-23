@@ -18,6 +18,7 @@ export default class NavBar extends React.Component {
           <Link to= '/my-chores'>My Chores</Link>
           <Link to= '/create-a-chore'>Create a Chore</Link>
           <Link to= '/management'>Management</Link>
+          <Link to= '/my-level'>My Level</Link>
           <button><Link to="/sign-in">Sign In</Link></button>
           <button><Link to="/sign-up">Sign Up</Link></button>
         </nav>
