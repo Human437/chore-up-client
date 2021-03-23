@@ -13,14 +13,14 @@ export default {
       "code-2-join":"bJk3T"
     },
   ],
-  "people":[
+  "users":[
     {
       "id":1,
       "name":"Bob",
       "chores":[
-        "Walk the dog",
-        "Take Jack to school",
-        "Go to the PO box"
+        {"Walk the dog":10},
+        {"Take Jack to school":20},
+        {"Go to the PO box":20}
       ],
       "level":1,
       "xp-till-level-up":100,
@@ -29,8 +29,8 @@ export default {
       "id":2,
       "name":"Jack",
       "chores":[
-        "Buy groceries",
-        "Water the plants"
+        {"Buy groceries":20},
+        {"Water the plants":10}
       ],
       "level":1,
       "xp-till-level-up":100,
@@ -39,8 +39,8 @@ export default {
       "id":3,
       "name":"Jill",
       "chores":[
-        "Do the laundry",
-        "Take out the trash"
+        {"Do the laundry":10},
+        {"Take out the trash":10}
       ],
       "level":1,
       "xp-till-level-up":100,
@@ -49,8 +49,8 @@ export default {
       "id":4,
       "name":"Mary",
       "chores":[
-        "Do the laundry",
-        "Take out the trash"
+        {"Do the laundry":10},
+        {"Take out the trash":10}
       ],
       "level":1,
       "xp-till-level-up":100,
@@ -59,8 +59,8 @@ export default {
       "id":5,
       "name":"John",
       "chores":[
-        "Feed the fish",
-        "Vacuum the carpet"
+        {"Feed the fish":10},
+        {"Vacuum the carpet":30}
       ],
       "level":1,
       "xp-till-level-up":100,
@@ -69,8 +69,8 @@ export default {
       "id":6,
       "name":"Amy",
       "chores":[
-        "Water the plants",
-        "Clean the fridge"
+        {"Water the plants":10},
+        {"Clean the fridge":30}
       ],
       "level":1,
       "xp-till-level-up":100,
