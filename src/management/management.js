@@ -2,7 +2,7 @@ import React from 'react'
 import "./management.css"
 import {Link} from "react-router-dom"
 
-export default class MyChores extends React.Component {
+export default class Management extends React.Component {
   constructor(props){
     super(props);
     this.state = {
