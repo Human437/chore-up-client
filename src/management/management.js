@@ -13,14 +13,6 @@ export default class Management extends React.Component {
   render(){
     return(
       <>
-        <nav role="navigation">
-          <Link to="./../index.html">Home</Link>
-          <Link to= './my-chores.html'>My Chores</Link>
-          <Link to= './createAChore.html'>Create a Chore</Link>
-          <Link to= './managementPage.html'>Management</Link>
-          <button><Link to="./sign-in.html">Sign In</Link></button>
-          <button><Link to="./sign-up.html">Sign Up</Link></button>
-        </nav>
         <main role="main">
           <h2>Members</h2>
           {/* Only admins of the family should be able to see this page and manage users
