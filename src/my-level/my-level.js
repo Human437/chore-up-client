@@ -1,5 +1,5 @@
 import React from 'react'
-import "./my-chores.css"
+import "./my-level.css"
 
 export default class MyLevel extends React.Component {
   constructor(props){
