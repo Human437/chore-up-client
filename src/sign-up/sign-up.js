@@ -94,7 +94,7 @@ export default class SignUp extends React.Component {
       <>
         <div className="sign-on-container">
           <Link to="/">
-            <h2 id="heading-sign-on">Credit Card Recommender</h2>
+            <h2 id="heading-sign-on">Chore Up</h2>
           </Link>
           <div id="form-container">
             <div id="form-section">
