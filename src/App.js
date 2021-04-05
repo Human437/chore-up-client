@@ -11,6 +11,7 @@ import NavBar from "./navbar/navbar";
 import HomePage from "./home-page/home-page";
 import MyLevel from "./my-level/my-level";
 import JoinOrCreateFamily from './join-or-create-family/join-or-create-family'
+import JoinFamily from './join-family/join-family'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,6 +56,7 @@ export default class App extends React.Component {
           <Route path="/sign-up" component={SignUp} />
           <Route path="/my-level" component={MyLevel} />
           <Route path="/join-or-create-family" component={JoinOrCreateFamily}/>
+          <Route path='/join-family' component={JoinFamily}/>
         </main>
       </ChoreUpContext.Provider>
     );
