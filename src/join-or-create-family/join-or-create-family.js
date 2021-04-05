@@ -13,6 +13,7 @@ export default class JoinOrCreateFamily extends React.Component {
         <h1>Join or Create a Family</h1>
         <button 
           id="create-a-family-btn"
+          onClick={(e) => this.props.history.push('/create-family')}
         >
           Create a Family
         </button>
