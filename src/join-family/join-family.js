@@ -12,8 +12,13 @@ export default class JoinFamily extends React.Component {
     };
   }
 
-  updateFamilyCode(e){
-    return
+  updateFamilyCode(familyCode){
+    this.setState({
+      familyCode:{
+        value: familyCode,
+        touched: true
+      }
+    })
   }
 
   validateFamilyCode(e){
