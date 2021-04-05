@@ -1,5 +1,6 @@
 import React from "react";
 import "./join-family.css";
+import ValidationError from './../validationError'
 
 export default class JoinFamily extends React.Component {
   constructor(props) {
@@ -21,8 +22,13 @@ export default class JoinFamily extends React.Component {
     })
   }
 
-  validateFamilyCode(e){
-    return
+  validateFamilyCode(){
+    const familyCode = this.state.familyCode.value.trim()
+    if(familyCode.length === 0){
+      return "Family code is required"
+    }else if(familyCode.length > 8){
+      return "Family codes are not longer than eight characters"
+    }
   }
 
   handleSubmit(e){
@@ -40,9 +46,14 @@ export default class JoinFamily extends React.Component {
           <input
             type="text"
             placeholder="Family Code"
-            onchange={(e) => this.updateFamilyCode(e.target.value)}
+            onChange={(e) => this.updateFamilyCode(e.target.value)}
           />
           <br/>
+          <small className='error'>
+            {this.state.familyCode.touched && (
+              <ValidationError message={this.validateFamilyCode()}/>
+            )}
+          </small>
           <button
             type='submit'
             id='join-family-submit-btn'
