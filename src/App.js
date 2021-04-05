@@ -58,7 +58,7 @@ export default class App extends React.Component {
           <Route path="/my-level" component={MyLevel} />
           <Route path="/join-or-create-family" component={JoinOrCreateFamily}/>
           <Route path='/join-family' component={JoinFamily}/>
-          <Route path='/create-famly' component={CreateFamily}/>
+          <Route path='/create-family' component={CreateFamily}/>
         </main>
       </ChoreUpContext.Provider>
     );
