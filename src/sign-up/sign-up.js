@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import validator from "validator";
 import config from "./../config";
 import { Link } from "react-router-dom";
+import ChoreUpContext from './../choreUpContext';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -23,8 +24,14 @@ export default class SignUp extends React.Component {
         touched: false,
       },
       isEmailInDb: false,
+      name:{
+        value: "",
+        touched: false,
+      },
     };
   }
+
+  static contextType = ChoreUpContext;
 
   updateEmail(email) {
     this.setState({
@@ -41,6 +48,12 @@ export default class SignUp extends React.Component {
     this.setState({
       confirmPassword: { value: confirmPassword, touched: true },
     });
+  }
+
+  updateName(name){
+    this.setState({
+      name: {value:name,touched:true}
+    })
   }
 
   validateEmail() {
@@ -81,12 +94,67 @@ export default class SignUp extends React.Component {
     }
   }
 
+  validateName(){
+    const name = this.state.name.value.trim();
+    const nameRegex = /^[a-zA-Z]+$/
+    //Regex checks to make sure that the name only contains letters
+    if (name.length === 0){
+      return "First name is required";
+    }else if(!nameRegex.test(name)){
+      return "First name must only contain letters"
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     // bcrypt will be used to hash passwords
     // default number of salt rounds is 10
     // config used to store api keys
     // Check if the email provided is already associated with another account
+    const name = this.state.name.value.trim();
+    const email = this.state.email.value.trim();
+    // Check if the provided email is associated with another account
+    fetch(`${config.API_Users_Endpoint}?email=${email}`, {
+      method: "get",
+      headers: new Headers({
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (typeof json.id === "undefined") {
+          const password = this.state.password.value.trim();
+          const rounds = 10; // number of salt rounds, by default its 10
+          bcrypt.hash(password, rounds, (err, hash) => {
+            if (err) {
+              return;
+            }
+            fetch(config.API_Users_Endpoint, {
+              method: "POST",
+              body: JSON.stringify({
+                name: name,
+                level: 1,
+                xp_till_level_up: 100,
+                is_admin: false,
+                email: email,
+                hashed_password: hash,
+              }),
+              headers: {
+                "content-type": "application/json",
+                Authorization: `Bearer ${config.BEARER_TOKEN}`,
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                this.context.updateIsSignedIn(true);
+                this.context.updateUserId(data.id)
+                this.props.history.push('/join-or-create-family')
+              });
+          });
+        } else {
+          this.setState({ isEmailInDb: true });
+        }
+      });
   }
 
   render() {
@@ -103,6 +171,21 @@ export default class SignUp extends React.Component {
                 onSubmit={(e) => this.handleSubmit(e)}
               >
                 <div className="form-group">
+                <div className="form-field" id="user_name">
+                    <div>
+                      <i className="fa fa-user"></i>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      onChange={(e) => this.updateName(e.target.value)}
+                    />
+                  </div>
+                  <small className="error">
+                    {this.state.name.touched && (
+                      <ValidationError message = {this.validateName()} />
+                    )}
+                  </small>
                   <div className="form-field" id="email">
                     <div>
                       <i className="fa fa-user"></i>
