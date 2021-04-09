@@ -93,6 +93,8 @@ export default class CreateFamily extends React.Component {
         <br/>
         <button>Visit Management Page</button>
         <br/>
+        <button>View My Chores</button>
+        <br/>
         <button>View Profile</button>
       </>
     );
