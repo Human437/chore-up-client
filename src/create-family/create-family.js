@@ -52,10 +52,6 @@ export default class CreateFamily extends React.Component {
         Authorization: `Bearer ${config.BEARER_TOKEN}`,
       },
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-    })
   }
 
   componentDidMount(){
