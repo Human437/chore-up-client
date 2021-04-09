@@ -1,7 +1,7 @@
 import React from 'react'
-import "./my-level.css"
+import "./my-profile.css"
 
-export default class MyLevel extends React.Component {
+export default class MyProfile extends React.Component {
   constructor(props){
     super(props);
     this.state = {
