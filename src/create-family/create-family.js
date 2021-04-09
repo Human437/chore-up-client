@@ -1,6 +1,7 @@
 import React from "react";
 import "./create-family.css";
 import config from './../config'
+import ChoreUpContext from './../choreUpContext'
 
 export default class CreateFamily extends React.Component {
   constructor(props) {
@@ -11,6 +12,8 @@ export default class CreateFamily extends React.Component {
       }
     };
   }
+
+  static contextType = ChoreUpContext;
 
   makeFamilyCode(length=8) {
     let result = '';
@@ -29,6 +32,7 @@ export default class CreateFamily extends React.Component {
       .then((json) => {
         if (typeof json.id === 'undefined'){
           this.setState({familyCode:{value:result}})
+          this.createNewEntryInFamiliesTable()
           return result
         }else{
           this.makeFamilyCode()
@@ -36,12 +40,26 @@ export default class CreateFamily extends React.Component {
       })
   }
 
-  componentDidMount(){
-    this.makeFamilyCode()
+  createNewEntryInFamiliesTable(){
+    fetch(`${config.API_Families_Enpoint}`,{
+      method: "POST",
+      body: JSON.stringify({
+        admin:this.context.userId,
+        code_to_join:this.state.familyCode.value
+      }),
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    })
   }
 
-  handleSubmit(e){
-    e.preventDefault()
+  componentDidMount(){
+    this.makeFamilyCode()
   }
 
   render() {
