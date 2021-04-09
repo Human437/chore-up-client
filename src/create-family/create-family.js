@@ -89,6 +89,11 @@ export default class CreateFamily extends React.Component {
         <h2>Family Code</h2>
         <p>{this.state.familyCode.value}</p>
         <p>Please make note of the family code so that your family members can use the code to join your family</p>
+        <button>Create Chores For Family Members</button>
+        <br/>
+        <button>Visit Management Page</button>
+        <br/>
+        <button>View Profile</button>
       </>
     );
   }
