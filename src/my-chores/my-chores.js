@@ -23,6 +23,22 @@ export default class MyChores extends React.Component {
     })
   }
 
+  handleDone(e){
+    let userChoresArray = this.state.userChoresArray
+    userChoresArray.splice(e.target.index,1)
+    this.setState({userChoresArray:userChoresArray})
+    fetch(`${config.API_Chores_Endpoint}/${e.target.value}`,{
+      method: "PATCH",
+      body: JSON.stringify({
+        done:true
+      }),
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+  }
+
   componentDidMount(){
     this.getUserChores()
   }
@@ -39,7 +55,13 @@ export default class MyChores extends React.Component {
                   <h3>Task: {chore.name}</h3>
                   <h4>Value: {chore.value}</h4>
                   <p>Comments: {chore.comments}</p>
-                  <button>Mark As Done</button>
+                  <button 
+                    index={index}
+                    value={chore.chore_id}
+                    onClick={(e) =>{this.handleDone(e)}}
+                  >
+                    Mark As Done
+                  </button>
                 </div>
               )
             }
