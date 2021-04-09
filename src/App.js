@@ -58,12 +58,12 @@ export default class App extends React.Component {
         <main>
           <Route path="/" component={NavBar} />
           <Route exact path="/" component={HomePage} />
-          <Route path="/my-chores" component={MyChores} />
+          <Route path="/my-chores/:id" component={MyChores} />
           <Route path="/management" component={Management} />
           <Route path="/create-a-chore" component={CreateAChore} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/my-profile" component={MyProfile} />
+          <Route path="/my-profile/:id" component={MyProfile} />
           <Route path="/join-or-create-family" component={JoinOrCreateFamily}/>
           <Route path='/join-family' component={JoinFamily}/>
           <Route path='/create-family' component={CreateFamily}/>
