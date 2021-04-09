@@ -17,7 +17,11 @@ export default class SuccessfulJoin extends React.Component {
         <p>You admin will assign you chores. You will be rewarded with points and other rewards for successfully completing assigned chores.</p>
         <button>View My Chores</button>
         <br/>
-        <button>View Profile</button>
+        <button
+          onClick = {this.props.history.push(`/my-profile/${this.context.userId}`)}
+        >
+          View Profile
+        </button>
       </>
     );
   }
