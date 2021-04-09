@@ -13,6 +13,7 @@ import MyLevel from "./my-level/my-level";
 import JoinOrCreateFamily from './join-or-create-family/join-or-create-family'
 import JoinFamily from './join-family/join-family'
 import CreateFamily from './create-family/create-family'
+import SuccessfulJoin from './successful-join/successful-join'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,6 +67,7 @@ export default class App extends React.Component {
           <Route path="/join-or-create-family" component={JoinOrCreateFamily}/>
           <Route path='/join-family' component={JoinFamily}/>
           <Route path='/create-family' component={CreateFamily}/>
+          <Route path='/successful-join' component={SuccessfulJoin}/>
         </main>
       </ChoreUpContext.Provider>
     );
