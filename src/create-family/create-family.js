@@ -55,6 +55,7 @@ export default class CreateFamily extends React.Component {
     .then((response) => response.json())
     .then((data) => {
       this.context.updateFamilyId(data.id)
+      this.context.updateIsAdmin(true)
       this.createNewEntryInFamily_MembersTable(data.id)
     })
   }
