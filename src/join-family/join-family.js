@@ -1,6 +1,8 @@
 import React from "react";
 import "./join-family.css";
 import ValidationError from './../validationError'
+import config from './../config'
+import ChoreUpContext from './../choreUpContext'
 
 export default class JoinFamily extends React.Component {
   constructor(props) {
@@ -8,17 +10,21 @@ export default class JoinFamily extends React.Component {
     this.state = {
       familyCode:{
         value: "",
-        touched: false
+        touched: false,
+        familyCodeInDb: false,
       }
     };
   }
+
+  static contextType = ChoreUpContext
 
   updateFamilyCode(familyCode){
     this.setState({
       familyCode:{
         value: familyCode,
-        touched: true
-      }
+        touched: true,
+      },
+      familyCodeInDb: true,
     })
   }
 
@@ -33,6 +39,35 @@ export default class JoinFamily extends React.Component {
 
   handleSubmit(e){
     e.preventDefault()
+    const familyCode = this.state.familyCode.value.trim();
+    fetch(`${config.API_Families_Enpoint}?code_to_join=${familyCode}`,{
+      method: 'GET',
+      headers: new Headers({
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (typeof data.id !== 'undefined'){
+          fetch(`${config.API_Family_Members_Endpoint}`,{
+            method: "POST",
+            body: JSON.stringify({
+              user_id: this.context.userId,
+              family_id: data.id
+            }),
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${config.BEARER_TOKEN}`,
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data)
+            })
+        }else{
+          this.setState({familyCodeInDb:false})
+        }
+      })
   }
 
   render() {
@@ -52,6 +87,9 @@ export default class JoinFamily extends React.Component {
           <small className='error'>
             {this.state.familyCode.touched && (
               <ValidationError message={this.validateFamilyCode()}/>
+            )}
+            {!this.state.familyCodeInDb && this.state.familyCode.touched &&(
+              <ValidationError message="The family code entered is not associated with any family"/>
             )}
           </small>
           <button
