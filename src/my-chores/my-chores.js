@@ -33,14 +33,16 @@ export default class MyChores extends React.Component {
         <main role="main">
           <h1>Assigned Chores</h1>
           {this.state.userChoresArray.map((chore,index) => {
-            return (
-              <div key={chore.chore_id} className='chores'>
-                <h3>Task: {chore.name}</h3>
-                <h4>Value: {chore.value}</h4>
-                <p>Comments: {chore.comments}</p>
-                <button>Mark As Done</button>
-              </div>
-            )
+            if(!chore.done){
+              return (
+                <div key={chore.chore_id} className='chores'>
+                  <h3>Task: {chore.name}</h3>
+                  <h4>Value: {chore.value}</h4>
+                  <p>Comments: {chore.comments}</p>
+                  <button>Mark As Done</button>
+                </div>
+              )
+            }
           })}
         </main>
       </>
