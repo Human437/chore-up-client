@@ -95,7 +95,11 @@ export default class CreateFamily extends React.Component {
         <br/>
         <button>View My Chores</button>
         <br/>
-        <button>View Profile</button>
+        <button
+          onClick = {this.props.history.push(`/${this.context.userId}`)}
+        >
+          View Profile
+        </button>
       </>
     );
   }
