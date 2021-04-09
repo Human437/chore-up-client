@@ -9,7 +9,7 @@ export default class CreateFamily extends React.Component {
     this.state = {
       familyCode: {
         value: ""
-      }
+      },
     };
   }
 
@@ -52,6 +52,29 @@ export default class CreateFamily extends React.Component {
         Authorization: `Bearer ${config.BEARER_TOKEN}`,
       },
     })
+    .then((response) => response.json())
+    .then((data) => {
+      this.context.updateFamilyId(data.id)
+      this.createNewEntryInFamily_MembersTable(data.id)
+    })
+  }
+
+  createNewEntryInFamily_MembersTable(familyId){
+    fetch(`${config.API_Family_Members_Endpoint}`,{
+      method: "POST",
+      body: JSON.stringify({
+        user_id: this.context.userId,
+        family_id: familyId
+      }),
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+      })
   }
 
   componentDidMount(){
