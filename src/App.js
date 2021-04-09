@@ -9,7 +9,7 @@ import SignIn from "./sign-in/sign-in";
 import SignUp from "./sign-up/sign-up";
 import NavBar from "./navbar/navbar";
 import HomePage from "./home-page/home-page";
-import MyLevel from "./my-level/my-level";
+import MyProfile from "./my-profile/my-profile";
 import JoinOrCreateFamily from './join-or-create-family/join-or-create-family'
 import JoinFamily from './join-family/join-family'
 import CreateFamily from './create-family/create-family'
@@ -63,7 +63,7 @@ export default class App extends React.Component {
           <Route path="/create-a-chore" component={CreateAChore} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/my-level" component={MyLevel} />
+          <Route path="/my-profile" component={MyProfile} />
           <Route path="/join-or-create-family" component={JoinOrCreateFamily}/>
           <Route path='/join-family' component={JoinFamily}/>
           <Route path='/create-family' component={CreateFamily}/>
