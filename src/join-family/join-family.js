@@ -49,6 +49,7 @@ export default class JoinFamily extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         if (typeof data.id !== 'undefined'){
+          this.context.updateFamilyId(data.id)
           fetch(`${config.API_Family_Members_Endpoint}`,{
             method: "POST",
             body: JSON.stringify({
