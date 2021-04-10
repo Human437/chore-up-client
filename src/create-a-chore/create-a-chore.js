@@ -2,6 +2,7 @@ import React from 'react'
 import "./create-a-chore.css"
 import ChoreUpContext from './../choreUpContext'
 import ValidationError from './../validationError'
+import config from './../config'
 
 export default class CreateAChore extends React.Component {
   constructor(props){
@@ -58,18 +59,36 @@ export default class CreateAChore extends React.Component {
     }
   }
 
-  // validateComments(){
-  //   const comments = this.state.comments.value.trim();
-  //   if (comments.length === 0){
-  //     return ""
-  //   }
-  // }
-
   validateReward(){
     const reward = this.state.reward.value.trim()
     if (reward%10 !== 0){
       return "Rewards must be a multiple of 10"
     }
+  }
+
+  handleSubmit(e){
+    e.preventDefault()
+    const name = this.state.name.value.trim()
+    const comments = this.state.comments.value.trim()
+    const reward = this.state.reward.value
+
+    fetch(`${config.API_Chores_Endpoint}`, {
+      method:'POST',
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+      body: JSON.stringify({
+        name:name,
+        comments:comments,
+        value:reward,
+        done:false,
+      })
+    })
+      .then((responsse) => responsse.json())
+      .then((data) => {
+        console.log(data)
+      })
   }
 
   render(){
@@ -80,9 +99,12 @@ export default class CreateAChore extends React.Component {
             <h1>Create a new chore</h1>
           </header>
           <section>
-            <form id="chore-creator">
-              <section class="form-section overview-section">
-                <label for="dream-title">Chore Name</label>
+            <form 
+              id="chore-creator"
+              onSubmit={(e) => this.handleSubmit(e)}
+            >
+              <section className="form-section overview-section">
+                <label htmlFor="dream-title">Chore Name</label>
                 <input 
                   type="text" 
                   name="dream-title" 
@@ -90,18 +112,21 @@ export default class CreateAChore extends React.Component {
                   required
                   onChange={(e) =>{this.updateChoreName(e.target.value)}}
                 />
-                <small></small>
+                <small className='error'>
+                  {this.state.name.touched && (
+                    <ValidationError message={this.validateChoreName()}/>)}
+                </small>
               </section>
-              <section class="form-section overview-section">
-                <label for="dream-title">Comments</label>
+              <section className="form-section overview-section">
+                <label htmlFor="dream-title">Comments</label>
                 <textarea 
                   name ='comments' 
                   placeholder="Write comments here"
                   onChange={(e) => {this.updateComments(e.target.value)}}
                 ></textarea>
               </section>
-              <section class="form-section overview-section">
-                <label for="dream-title">Reward</label>
+              <section className="form-section overview-section">
+                <label htmlFor="dream-title">Reward</label>
                 <input 
                   type="number" 
                   name="dream-title" 
@@ -109,8 +134,12 @@ export default class CreateAChore extends React.Component {
                   required
                   onChange={(e) => {this.updateReward(e.target.value)}}
                 />
+                <small className='error'>
+                  {this.state.reward.touched && (
+                    <ValidationError message={this.validateReward()}/>)}
+                </small>
               </section>
-              <section class="button-section">
+              <section className="button-section">
                 <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
               </section>
