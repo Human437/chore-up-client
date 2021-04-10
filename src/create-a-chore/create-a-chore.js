@@ -60,7 +60,7 @@ export default class CreateAChore extends React.Component {
   }
 
   validateReward(){
-    const reward = this.state.reward.value.trim()
+    const reward = Number(this.state.reward.value.trim())
     if (reward%10 !== 0){
       return "Rewards must be a multiple of 10"
     }
@@ -87,7 +87,7 @@ export default class CreateAChore extends React.Component {
     })
       .then((responsse) => responsse.json())
       .then((data) => {
-        console.log(data)
+        this.props.history.push('/successful-chore-creation')
       })
   }
 
