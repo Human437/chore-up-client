@@ -18,8 +18,8 @@ export default class SuccessfulChoreCreation extends React.Component {
             <h1>Successfully Created New Chore</h1>
           </header>
           <section>
-            <button onChange={(e) => {this.props.history.push('/create-a-chore')}}>Create another chore</button>
-            <button onChange={(e) => {this.props.history.push('/management')}}>Return to management page</button>
+            <button onClick={(e) => {this.props.history.push('/create-a-chore')}}>Create another chore</button>
+            <button onClick={(e) => {this.props.history.push('/management')}}>Return to management page</button>
           </section>
         </main>
         <footer role="content-info">Footer</footer>
