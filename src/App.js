@@ -14,6 +14,7 @@ import JoinOrCreateFamily from './join-or-create-family/join-or-create-family'
 import JoinFamily from './join-family/join-family'
 import CreateFamily from './create-family/create-family'
 import SuccessfulJoin from './successful-join/successful-join'
+import SuccessfulChoreCreation from './successful-chore-creation/successful-chore-creation'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -68,6 +69,7 @@ export default class App extends React.Component {
           <Route path='/join-family' component={JoinFamily}/>
           <Route path='/create-family' component={CreateFamily}/>
           <Route path='/successful-join' component={SuccessfulJoin}/>
+          <Route path='/successful-chore-creation' component={SuccessfulChoreCreation}/>
         </main>
       </ChoreUpContext.Provider>
     );
