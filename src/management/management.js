@@ -14,7 +14,7 @@ export default class Management extends React.Component {
   static contextType = ChoreUpContext
 
   getFamilyMembers(){
-    fetch(`${config.API_Family_Members_Endpoint}/user/${this.context.user_id}`, {
+    fetch(`${config.API_Family_Members_Endpoint}/${this.context.userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${config.BEARER_TOKEN}`,
@@ -30,10 +30,24 @@ export default class Management extends React.Component {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data)
             this.setState({familyMembers:data})
           })
       })
+  }
+
+  handleKickMember(e){
+    const family_memberId = e.target.dataset.family_member
+    const index = e.target.dataset.index
+    let familyMembers = this.state.familyMembers
+    familyMembers.splice(index,1)
+    //uses e.target.dataset to access custom html attributes
+    this.setState({familyMembers:familyMembers})
+    fetch(`${config.API_Family_Members_Endpoint}/${family_memberId}`,{
+      method:"DELETE",
+      headers: {
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
   }
 
   componentDidMount(){
@@ -50,12 +64,21 @@ export default class Management extends React.Component {
           Admins should be able to remove users */}
           <div id="members">
             {this.state.familyMembers.map((member,index) => {
-              return (
-                <div key={member.user_id} className="family_member">
-                  <h4>{member.name}</h4>
-                  <button>Kick</button>
-                </div>
-              )
+              // Doesn't show the admin family member as a member so the admin can't kick themself
+              if(!member.is_admin){
+                return (
+                  <div key={member.user_id} className="family_member">
+                    <h4>{member.name}</h4>
+                    <button
+                      data-index={index}
+                      data-family_member={member.id}
+                      onClick={(e) =>{this.handleKickMember(e)}}
+                    >
+                      Kick
+                    </button>
+                  </div>
+                )
+              }
             })}
           </div>
           <h2>Code to join family</h2>
