@@ -1,36 +1,63 @@
 import React from 'react'
 import "./management.css"
-import {Link} from "react-router-dom"
+import config from './../config'
+import ChoreUpContext from './../choreUpContext'
 
 export default class Management extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-
+      familyMembers:[]
     }
+  }
+
+  static contextType = ChoreUpContext
+
+  getFamilyMembers(){
+    fetch(`${config.API_Family_Members_Endpoint}/user/${this.context.user_id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) =>{
+        fetch(`${config.API_Family_Members_Endpoint}/family/${data.family_id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${config.BEARER_TOKEN}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            this.setState({familyMembers:data})
+          })
+      })
+  }
+
+  componentDidMount(){
+    this.getFamilyMembers()
   }
 
   render(){
     return(
       <>
         <main role="main">
+          <h1>Family Management</h1>
           <h2>Members</h2>
           {/* Only admins of the family should be able to see this page and manage users
           Admins should be able to remove users */}
-          <ul>
-            <li>Jack <button>Kick</button></li>
-            <li>Jill <button>Kick</button></li>
-            <li>Bob <button>Kick</button></li>
-            <li>Jane <button>Kick</button></li>
-            <li>Mary <button>Kick</button></li>
-          </ul>
-          <h2>Chores to be approved</h2>
-          {/* Only admins should be able to approve chores that were completed */}
-          <ul>
-            <li>Walking the dog <button>Mark as Approved</button><button>Mark as Redo</button></li>
-            <li>Washing the dishes <button>Mark as Approved</button><button>Mark as Redo</button></li>
-            <li>Buying groceries <button>Mark as Approved</button><button>Mark as Redo</button></li>
-          </ul>
+          <div id="members">
+            {this.state.familyMembers.map((member,index) => {
+              return (
+                <div key={member.user_id} className="family_member">
+                  <h4>{member.name}</h4>
+                  <button>Kick</button>
+                </div>
+              )
+            })}
+          </div>
           <h2>Code to join family</h2>
           <h4>Current Code: ahw3j</h4>
           <button>Regenerate code</button>
