@@ -32,7 +32,7 @@ export default class CreateFamily extends React.Component {
       .then((json) => {
         if (typeof json.id === 'undefined'){
           this.setState({familyCode:{value:result}})
-          this.createNewEntryInFamiliesTable()
+          this.createNewEntryInFamiliesTable(result)
           return result
         }else{
           this.makeFamilyCode()
@@ -40,12 +40,12 @@ export default class CreateFamily extends React.Component {
       })
   }
 
-  createNewEntryInFamiliesTable(){
+  createNewEntryInFamiliesTable(code){
     fetch(`${config.API_Families_Enpoint}`,{
       method: "POST",
       body: JSON.stringify({
         admin:this.context.userId,
-        code_to_join:this.state.familyCode.value
+        code_to_join:code
       }),
       headers: {
         "content-type": "application/json",
@@ -89,18 +89,22 @@ export default class CreateFamily extends React.Component {
         <h2>Family Code</h2>
         <p>{this.state.familyCode.value}</p>
         <p>Please make note of the family code so that your family members can use the code to join your family</p>
-        <button>Create Chores For Family Members</button>
-        <br/>
-        <button>Visit Management Page</button>
+        <button
+          onClick = {() => this.props.history.push(`/create-chore`)}
+        >Create Chores For Family Members</button>
         <br/>
         <button
-          onClick = {this.props.history.push(`/my-chores/${this.context.userId}`)}
+          onClick = {() => this.props.history.push(`/management`)}
+        >Visit Management Page</button>
+        <br/>
+        <button
+          onClick = {() => this.props.history.push(`/my-chores/${this.context.userId}`)}
         >
           View My Chores
         </button>
         <br/>
         <button
-          onClick = {this.props.history.push(`/my-profile/${this.context.userId}`)}
+          onClick = {() => this.props.history.push(`/my-profile/${this.context.userId}`)}
         >
           View Profile
         </button>
