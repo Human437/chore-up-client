@@ -13,6 +13,13 @@ export default class NavBar extends React.Component {
 
   static contextType = ChoreUpContext
 
+  handleSignOut(){
+    this.context.updateIsSignedIn(false)
+    this.context.updateUserId(null)
+    this.context.updateIsAdmin(false)
+    this.context.updateFamilyId(null)
+  }
+
   render(){
     if(this.context.isSignedIn && this.context.isAdmin){
       return(
@@ -23,7 +30,7 @@ export default class NavBar extends React.Component {
             <Link to= '/create-a-chore'>Create a Chore</Link>
             <Link to= '/management'>Management</Link>
             <Link to= {`/my-profile/${this.context.userId}`}>My Profile</Link>
-            <button><Link to="/">Sign Out</Link></button>
+            <button><Link to="/" onClick={(e) => {this.handleSignOut()}}>Sign Out</Link></button>
           </nav>
         </>
       )
@@ -34,7 +41,7 @@ export default class NavBar extends React.Component {
             <Link to="/">Home</Link>
             <Link to= {`/my-chores/${this.context.userId}`}>My Chores</Link>
             <Link to= {`/my-profile/${this.context.userId}`}>My Profile</Link>
-            <button><Link to="/">Sign Out</Link></button>
+            <button><Link to="/" onClick={(e) => {this.handleSignOut()}}>Sign Out</Link></button>
           </nav>
         </>
       )
