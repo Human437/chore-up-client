@@ -5,7 +5,8 @@ const ChoreUpContext = React.createContext({
   isAdmin: false,
   userId:null,
   familyId:null,
-  isAlreadyAdminOfAFamily:false
+  isAlreadyAdminOfAFamily:false,
+  familyCode: "",
 })
 
 export default ChoreUpContext
