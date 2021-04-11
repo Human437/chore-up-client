@@ -7,6 +7,8 @@ export default class MyChores extends React.Component {
     super(props);
     this.state = {
       userChoresArray:[],
+      userXP_til_level_up:0,
+      userLevel:1
     }
   }
 
@@ -23,14 +25,53 @@ export default class MyChores extends React.Component {
     })
   }
 
+  getUser(){
+    fetch(`${config.API_Users_Endpoint}/${this.props.match.params.id}`,{
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      this.setState({userXP_til_level_up:data.xp_till_level_up,userLevel:data.level})
+    })
+  }
+
   handleDone(e){
     let userChoresArray = this.state.userChoresArray
-    userChoresArray.splice(e.target.index,1)
+    const index = e.target.dataset.index
+    const chore_id = e.target.dataset.chore_id
+    const value = e.target.dataset.value
+    userChoresArray.splice(index,1)
     this.setState({userChoresArray:userChoresArray})
-    fetch(`${config.API_Chores_Endpoint}/${e.target.value}`,{
+    fetch(`${config.API_Chores_Endpoint}/${chore_id}`,{
       method: "PATCH",
       body: JSON.stringify({
         done:true
+      }),
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+    let newXP_till_level_up = this.state.userXP_til_level_up - value
+    let newLevel
+    if(newXP_till_level_up <= 0){
+      newLevel = this.state.userLevel + 1
+      newXP_till_level_up = 100 - Math.abs(newXP_till_level_up)
+    }else{
+      newLevel = this.state.userLevel
+    }
+    this.setState({
+      userLevel:newLevel,
+      userXP_til_level_up:newXP_till_level_up
+    })
+    fetch(`${config.API_Users_Endpoint}/${this.props.match.params.id}`,{
+      method: "PATCH",
+      body: JSON.stringify({
+        level:newLevel,
+        xp_till_level_up:newXP_till_level_up
       }),
       headers: {
         "content-type": "application/json",
@@ -41,11 +82,18 @@ export default class MyChores extends React.Component {
 
   componentDidMount(){
     this.getUserChores()
+    this.getUser()
   }
 
   render(){
+    let incompleteChores = 0
+    for(let i =0;i<this.state.userChoresArray.length;i++){
+      if(!this.state.userChoresArray[i].done){
+        incompleteChores += 1
+      }
+    }
     let choresHtml
-    if(this.state.userChoresArray.length === 0){
+    if(this.state.userChoresArray.length === 0 || incompleteChores === 0){
       choresHtml = <h2>There are currently no chores assigned to you.</h2>
     }else{
       choresHtml = this.state.userChoresArray.map((chore,index) => {
@@ -56,8 +104,9 @@ export default class MyChores extends React.Component {
               <h4>Value: {chore.value}</h4>
               <p>Comments: {chore.comments}</p>
               <button 
-                index={index}
-                value={chore.chore_id}
+                data-index={index}
+                data-chore_id={chore.chore_id}
+                data-value={chore.value}
                 onClick={(e) =>{this.handleDone(e)}}
               >
                 Mark As Done
