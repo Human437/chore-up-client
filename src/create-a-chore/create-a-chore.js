@@ -20,7 +20,8 @@ export default class CreateAChore extends React.Component {
         value:0,
         touched:false
       },
-      familyMembers:[]
+      familyMembers:[],
+      selectedFamilyMember:"",
     }
   }
 
@@ -51,6 +52,10 @@ export default class CreateAChore extends React.Component {
         touched:true
       }
     })
+  }
+
+  updateSelectedFamilyMember(familyMember){
+    this.setState({selectedFamilyMember:familyMember})
   }
 
   validateChoreName(){
@@ -85,6 +90,9 @@ export default class CreateAChore extends React.Component {
           .then((response) => response.json())
           .then((data) => {
             this.setState({familyMembers:data})
+            if(data.length > 0){
+              this.setState({selectedFamilyMember:data[0].id})
+            }
           })
       })
   }
@@ -110,6 +118,17 @@ export default class CreateAChore extends React.Component {
     })
       .then((responsse) => responsse.json())
       .then((data) => {
+        fetch(config.API_User_Chores_Endpoint, {
+          method:'POST',
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${config.BEARER_TOKEN}`,
+          },
+          body: JSON.stringify({
+            user_id:this.state.selectedFamilyMember,
+            chore_id:data.id
+          })
+        })
         this.props.history.push('/successful-chore-creation')
       })
   }
@@ -178,7 +197,14 @@ export default class CreateAChore extends React.Component {
               </section>
               <section className="form-section overview-section">
                 <label htmlFor="dream-title">Responsible</label>
-                <select name="family_members">
+                <select 
+                  name="family_members"
+                  value={this.state.selectedFamilyMember}
+                  onChange={(e) => {
+                    this.updateSelectedFamilyMember(e.target.value)
+                  }}
+                  required
+                >
                   {family_members}
                 </select>
               </section>
