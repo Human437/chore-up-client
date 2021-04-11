@@ -7,14 +7,15 @@ export default class Management extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      familyMembers:[]
+      familyMembers:[],
+      familyCode:"not-set"
     }
   }
 
   static contextType = ChoreUpContext
 
   getFamilyMembers(){
-    fetch(`${config.API_Family_Members_Endpoint}/${this.context.userId}`, {
+    fetch(`${config.API_Family_Members_Endpoint}/user/${this.context.userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${config.BEARER_TOKEN}`,
@@ -50,8 +51,33 @@ export default class Management extends React.Component {
     })
   }
 
+  getFamilyCode(){
+    fetch(`${config.API_Family_Members_Endpoint}/user/${this.context.userId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) =>{
+        console.log(data)  
+        fetch(`${config.API_Families_Enpoint}/${data.family_id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${config.BEARER_TOKEN}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            this.setState({familyCode:data.code_to_join})
+          })
+      })
+  }
+
   componentDidMount(){
     this.getFamilyMembers()
+    this.getFamilyCode()
   }
 
   render(){
@@ -82,8 +108,7 @@ export default class Management extends React.Component {
             })}
           </div>
           <h2>Code to join family</h2>
-          <h4>Current Code: ahw3j</h4>
-          <button>Regenerate code</button>
+          <h4>Current Code: {this.state.familyCode}</h4>
         </main>
         <footer role="content-info">Footer</footer>
       </>
