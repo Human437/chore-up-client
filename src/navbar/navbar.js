@@ -18,6 +18,8 @@ export default class NavBar extends React.Component {
     this.context.updateUserId(null)
     this.context.updateIsAdmin(false)
     this.context.updateFamilyId(null)
+    this.context.updateIsAlreadyAdminOfAFamily(false)
+    this.context.updateFamilyCode("")
   }
 
   render(){
