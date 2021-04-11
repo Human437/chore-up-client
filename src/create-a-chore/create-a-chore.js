@@ -19,7 +19,8 @@ export default class CreateAChore extends React.Component {
       reward:{
         value:0,
         touched:false
-      }
+      },
+      familyMembers:[]
     }
   }
 
@@ -66,6 +67,28 @@ export default class CreateAChore extends React.Component {
     }
   }
 
+  getFamilyMembers(){
+    fetch(`${config.API_Family_Members_Endpoint}/user/${this.context.userId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) =>{
+        fetch(`${config.API_Family_Members_Endpoint}/family/${data.family_id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${config.BEARER_TOKEN}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            this.setState({familyMembers:data})
+          })
+      })
+  }
+
   handleSubmit(e){
     e.preventDefault()
     const name = this.state.name.value.trim()
@@ -91,7 +114,21 @@ export default class CreateAChore extends React.Component {
       })
   }
 
+  componentDidMount(){
+    this.getFamilyMembers()
+  }
+
   render(){
+    let family_members
+    if(this.state.familyMembers.length === 0){
+      family_members = <option value={null}>No Family Members</option>
+    }else{
+      family_members = this.state.familyMembers.map((member,index) => {
+        return (
+          <option key={member.id} value={member.id}>{member.name}</option>
+        )
+      })
+    }
     return(
       <>
         <main role="main">
@@ -138,6 +175,12 @@ export default class CreateAChore extends React.Component {
                   {this.state.reward.touched && (
                     <ValidationError message={this.validateReward()}/>)}
                 </small>
+              </section>
+              <section className="form-section overview-section">
+                <label htmlFor="dream-title">Responsible</label>
+                <select name="family_members">
+                  {family_members}
+                </select>
               </section>
               <section className="button-section">
                 <button type="submit">Submit</button>
