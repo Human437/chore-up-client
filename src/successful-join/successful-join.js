@@ -16,13 +16,13 @@ export default class SuccessfulJoin extends React.Component {
         <h1>Successfully Joined Family</h1>
         <p>You admin will assign you chores. You will be rewarded with points and other rewards for successfully completing assigned chores.</p>
         <button
-          onClick = {this.props.history.push(`/my-chores/${this.context.userId}`)}
+          onClick = {() => this.props.history.push(`/my-chores/${this.context.userId}`)}
         >
           View My Chores
         </button>
         <br/>
         <button
-          onClick = {this.props.history.push(`/my-profile/${this.context.userId}`)}
+          onClick = {() => this.props.history.push(`/my-profile/${this.context.userId}`)}
         >
           View Profile
         </button>
