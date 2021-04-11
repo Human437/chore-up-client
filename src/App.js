@@ -24,6 +24,7 @@ export default class App extends React.Component {
       isAdmin: false,
       userId:null,
       familyId:null,
+      isAlreadyAdminOfAFamily:false,
     };
   }
 
@@ -43,6 +44,10 @@ export default class App extends React.Component {
     this.setState({familyId:id})
   }
 
+  updateIsAlreadyAdminOfAFamily = (state) => {
+    this.setState({isAlreadyAdminOfAFamily: state})
+  }
+
   render() {
     return (
       <ChoreUpContext.Provider 
@@ -51,10 +56,12 @@ export default class App extends React.Component {
         isAdmin: this.state.isAdmin,
         userId: this.state.userId,
         familyId: this.state.familyId,
+        isAlreadyAdminOfAFamily: this.state.isAlreadyAdminOfAFamily,
         updateIsSignedIn: this.updateIsSignedIn,
         updateIsAdmin: this.updateIsAdmin,
         updateUserId: this.updateUserId,
         updateFamilyId: this.updateFamilyId,
+        updateIsAlreadyAdminOfAFamily: this.updateIsAlreadyAdminOfAFamily,
       }}>
         <main>
           <Route path="/" component={NavBar} />
