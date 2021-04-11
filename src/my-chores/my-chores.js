@@ -44,28 +44,34 @@ export default class MyChores extends React.Component {
   }
 
   render(){
+    let choresHtml
+    if(this.state.userChoresArray.length === 0){
+      choresHtml = <h2>There are currently no chores assigned to you.</h2>
+    }else{
+      choresHtml = this.state.userChoresArray.map((chore,index) => {
+        if(!chore.done){
+          return(
+            <div key={chore.chore_id} className='chores'>
+              <h3>Task: {chore.name}</h3>
+              <h4>Value: {chore.value}</h4>
+              <p>Comments: {chore.comments}</p>
+              <button 
+                index={index}
+                value={chore.chore_id}
+                onClick={(e) =>{this.handleDone(e)}}
+              >
+                Mark As Done
+              </button>
+            </div>
+          )
+        }
+      })
+    }
     return(
       <>
         <main role="main">
           <h1>Assigned Chores</h1>
-          {this.state.userChoresArray.map((chore,index) => {
-            if(!chore.done){
-              return (
-                <div key={chore.chore_id} className='chores'>
-                  <h3>Task: {chore.name}</h3>
-                  <h4>Value: {chore.value}</h4>
-                  <p>Comments: {chore.comments}</p>
-                  <button 
-                    index={index}
-                    value={chore.chore_id}
-                    onClick={(e) =>{this.handleDone(e)}}
-                  >
-                    Mark As Done
-                  </button>
-                </div>
-              )
-            }
-          })}
+          {choresHtml}
         </main>
       </>
     )
