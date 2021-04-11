@@ -20,7 +20,7 @@ export default class CreateFamily extends React.Component {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
     for ( let i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     fetch(`${config.API_Families_Enpoint}?code_to_join=${result}`,{
       method: 'get',
@@ -32,6 +32,7 @@ export default class CreateFamily extends React.Component {
       .then((json) => {
         if (typeof json.id === 'undefined'){
           this.setState({familyCode:{value:result}})
+          this.context.updateFamilyCode(result)
           this.createNewEntryInFamiliesTable(result)
           return result
         }else{
@@ -79,15 +80,24 @@ export default class CreateFamily extends React.Component {
   }
 
   componentDidMount(){
-    this.makeFamilyCode()
+    if(!this.context.isAlreadyAdminOfAFamily){
+      this.makeFamilyCode()
+      this.context.updateIsAlreadyAdminOfAFamily(true)
+    }
   }
 
   render() {
+    let familyCode
+    if (this.state.familyCode.value === ""){
+      familyCode = this.context.familyCode
+    }else{
+      familyCode = this.state.familyCode.value
+    }
     return (
       <>
         <h1>Created New Family</h1>
         <h2>Family Code</h2>
-        <p>{this.state.familyCode.value}</p>
+        <p>{familyCode}</p>
         <p>Please make note of the family code so that your family members can use the code to join your family</p>
         <button
           onClick = {() => this.props.history.push(`/create-a-chore`)}
