@@ -90,7 +90,7 @@ export default class CreateFamily extends React.Component {
         <p>{this.state.familyCode.value}</p>
         <p>Please make note of the family code so that your family members can use the code to join your family</p>
         <button
-          onClick = {() => this.props.history.push(`/create-chore`)}
+          onClick = {() => this.props.history.push(`/create-a-chore`)}
         >Create Chores For Family Members</button>
         <br/>
         <button
