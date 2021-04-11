@@ -20,7 +20,6 @@ export default class HomePage extends React.Component {
             <header>
                 <h3>Keeping track of chores</h3>
             </header>
-            <p>[<em>placeholder img of chore app</em>]</p>
             <p>Know exactly who is assigned what chore and the status of the chore</p>
           </section>
         </main>
