@@ -59,8 +59,7 @@ export default class Management extends React.Component {
       },
     })
       .then((response) => response.json())
-      .then((data) =>{
-        console.log(data)  
+      .then((data) =>{ 
         fetch(`${config.API_Families_Enpoint}/${data.family_id}`, {
           method: "GET",
           headers: {
@@ -69,7 +68,6 @@ export default class Management extends React.Component {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data)
             this.setState({familyCode:data.code_to_join})
           })
       })
