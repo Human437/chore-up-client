@@ -5,6 +5,7 @@ import validator from "validator";
 import ValidationError from "./../validationError";
 import config from "./../config";
 import { Link } from "react-router-dom";
+import ChoreUpContext from './../choreUpContext'
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -22,6 +23,8 @@ export default class SignIn extends React.Component {
       isPasswordCorrect: true,
     };
   }
+
+  static contextType = ChoreUpContext
 
   updateEmail(email) {
     this.setState({
@@ -55,7 +58,50 @@ export default class SignIn extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // Potentially offer a forgot password link, that will link to security questions
+    const email = this.state.email.value.trim();
+    fetch(`${config.API_Users_Endpoint}?email=${email}`, {
+      method: "GET",
+      headers: new Headers({
+        Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (typeof json.id !== "undefined") {
+          const hash = json.hashed_password;
+          const enteredPassword = this.state.password.value.trim();
+          bcrypt.compare(enteredPassword, hash, (err, res) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            if (res) {
+              this.context.updateIsSignedIn(true)
+              this.context.updateUserId(json.id)
+              fetch(`${config.API_Family_Members_Endpoint}/user/${json.id}`, {
+                method: "GET",
+                headers: {
+                  Authorization: `Bearer ${config.BEARER_TOKEN}`,
+                },
+              })
+                .then((response) => response.json())
+                .then((data) =>{
+                  this.context.updateFamilyId(data.family_id)
+                })
+              if (json.is_admin){
+                this.context.updateIsAdmin(true)
+                this.props.history.push('/management')
+              }else{
+                this.props.history.push(`/my-chores/${json.id}`)
+              }
+            } else {
+              this.setState({ isPasswordCorrect: false });
+            }
+          });
+        } else {
+          this.setState({ isEmailInDb: false });
+        }
+      });
   }
 
   render() {
