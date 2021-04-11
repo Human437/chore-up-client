@@ -63,7 +63,7 @@ export default class JoinFamily extends React.Component {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log(data)
+              this.props.history.push('/successful-join')
             })
         }else{
           this.setState({familyCodeInDb:false})
