@@ -216,7 +216,7 @@ export default class SignUp extends React.Component {
                     />
                   </div>
                   <small id="password-requirement">
-                    Use 8 or more characters with a mix of letters, numbers &
+                    Use 8 or more characters with a mix of upper & lower case letters, numbers &
                     symbols
                   </small>
                   <small className="error">
