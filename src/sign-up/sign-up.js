@@ -161,9 +161,8 @@ export default class SignUp extends React.Component {
     return (
       <>
         <div className="sign-on-container">
-          <Link to="/">
-            <h2 id="heading-sign-on">Chore Up</h2>
-          </Link>
+          <h2>Create an account</h2>
+          <br/>
           <div id="form-container">
             <div id="form-section">
               <form
@@ -188,7 +187,7 @@ export default class SignUp extends React.Component {
                   </small>
                   <div className="form-field" id="email">
                     <div>
-                      <i className="fa fa-user"></i>
+                      <i class="fas fa-envelope-square"></i>
                     </div>
                     <input
                       type="text"
