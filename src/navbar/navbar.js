@@ -61,7 +61,7 @@ export default class NavBar extends React.Component {
                 />
               </Link>
             </div>
-            <ul className="nav-links">
+            <ul className="nav-links" onClick={this.navSlide}>
               <li>
                 <Link to={`/my-chores/${this.context.userId}`}>My Chores</Link>
               </li>
@@ -87,7 +87,7 @@ export default class NavBar extends React.Component {
                 </Link>
               </li>
             </ul>
-            <div class="burger">
+            <div class="burger" onClick={this.navSlide}>
               <div class="line1"></div>
               <div class="line2"></div>
               <div class="line3"></div>
@@ -109,7 +109,7 @@ export default class NavBar extends React.Component {
                 />
               </Link>
             </div>
-            <ul className="nav-links">
+            <ul className="nav-links" onClick={this.navSlide}>
               <li>
                 <Link to={`/my-chores/${this.context.userId}`}>My Chores</Link>
               </li>
@@ -129,7 +129,7 @@ export default class NavBar extends React.Component {
                 </Link>
               </li>
             </ul>
-            <div class="burger">
+            <div class="burger" onClick={this.navSlide}>
               <div class="line1"></div>
               <div class="line2"></div>
               <div class="line3"></div>
