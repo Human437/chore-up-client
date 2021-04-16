@@ -5,7 +5,7 @@ import validator from "validator";
 import ValidationError from "./../validationError";
 import config from "./../config";
 import { Link } from "react-router-dom";
-import ChoreUpContext from './../choreUpContext'
+import ChoreUpContext from "./../choreUpContext";
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class SignIn extends React.Component {
     };
   }
 
-  static contextType = ChoreUpContext
+  static contextType = ChoreUpContext;
 
   updateEmail(email) {
     this.setState({
@@ -76,8 +76,8 @@ export default class SignIn extends React.Component {
               return;
             }
             if (res) {
-              this.context.updateIsSignedIn(true)
-              this.context.updateUserId(json.id)
+              this.context.updateIsSignedIn(true);
+              this.context.updateUserId(json.id);
               fetch(`${config.API_Family_Members_Endpoint}/user/${json.id}`, {
                 method: "GET",
                 headers: {
@@ -85,14 +85,14 @@ export default class SignIn extends React.Component {
                 },
               })
                 .then((response) => response.json())
-                .then((data) =>{
-                  this.context.updateFamilyId(data.family_id)
-                })
-              if (json.is_admin){
-                this.context.updateIsAdmin(true)
-                this.props.history.push('/management')
-              }else{
-                this.props.history.push(`/my-chores/${json.id}`)
+                .then((data) => {
+                  this.context.updateFamilyId(data.family_id);
+                });
+              if (json.is_admin) {
+                this.context.updateIsAdmin(true);
+                this.props.history.push("/management");
+              } else {
+                this.props.history.push(`/my-chores/${json.id}`);
               }
             } else {
               this.setState({ isPasswordCorrect: false });

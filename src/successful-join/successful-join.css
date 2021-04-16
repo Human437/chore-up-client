@@ -1,17 +1,17 @@
-#successful-join-page{
-  display:flex;
+#successful-join-page {
+  display: flex;
   flex-direction: column;
   height: 92vh;
   align-items: center;
   width: 100%;
   text-align: center;
 }
-#successful-join-btn-container{
+#successful-join-btn-container {
   display: flex;
   justify-content: space-between;
   width: 80%;
 }
-.successful-join-btn{
+.successful-join-btn {
   width: 45%;
   padding: 10px;
   border: none;
@@ -24,12 +24,12 @@
   font-size: 20px;
 }
 @media screen and (max-width: 768px) {
-  #successful-join-btn-container{
+  #successful-join-btn-container {
     display: flex;
     flex-direction: column;
     width: 80%;
   }
-  .successful-join-btn{
+  .successful-join-btn {
     width: 100%;
   }
 }

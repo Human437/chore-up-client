@@ -1,19 +1,19 @@
-#management-page{
+#management-page {
   display: flex;
   justify-content: space-between;
   height: 85vh;
   width: 100%;
   padding: 2vh 2vw;
 }
-#management-page h2{
+#management-page h2 {
   font-size: 40px;
 }
-.management-item{
+.management-item {
   width: 100%;
   text-align: center;
 }
-.family_member{
-  display:flex;
+.family_member {
+  display: flex;
   width: 100%;
   border-style: solid;
   border-color: black;
@@ -23,27 +23,27 @@
   justify-content: space-between;
   text-align: left;
 }
-.kick-btn{
+.kick-btn {
   border-color: black;
   border-width: 2px;
   width: 20%;
   background-color: red;
   font-size: 25px;
-  color:white;
+  color: white;
 }
-#management-page-header{
+#management-page-header {
   text-align: center;
   font-size: 50px;
 }
-#family-code{
+#family-code {
   font-size: 35px;
 }
-#only-fam-member{
+#only-fam-member {
   font-size: 25px;
 }
 
 @media screen and (max-width: 768px) {
-  #management-page{
+  #management-page {
     flex-direction: column;
     justify-content: end;
   }

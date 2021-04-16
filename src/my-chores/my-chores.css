@@ -1,4 +1,4 @@
-#my-chores-page{
+#my-chores-page {
   text-align: center;
   height: 90vh;
   padding: 2vh 2vw;
@@ -6,8 +6,8 @@
   flex-direction: column;
   align-items: center;
 }
-.chores{
-  display:flex;
+.chores {
+  display: flex;
   width: 80%;
   border-style: solid;
   border-color: black;
@@ -17,11 +17,11 @@
   justify-content: space-between;
   text-align: left;
 }
-.done-btn{
+.done-btn {
   border-color: black;
   border-width: 2px;
   width: 20%;
   background-color: rgb(20, 119, 20);
   font-size: 20px;
-  color:white;
+  color: white;
 }

@@ -1,5 +1,5 @@
-#landing-page{
-  background: url('./../images/landingPage/happyFamily.jpg');
+#landing-page {
+  background: url("./../images/landingPage/happyFamily.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: center;
@@ -13,18 +13,18 @@
   text-transform: uppercase;
 }
 
-#landing-page-h1{
+#landing-page-h1 {
   font-size: 4em;
   color: #2fbacc;
 }
 
-#landing-page-h2{
+#landing-page-h2 {
   font-size: 1.5em;
   color: #369eac;
 }
 
 @media screen and (max-width: 768px) {
-  #landing-page-h2{
+  #landing-page-h2 {
     display: none;
   }
 }

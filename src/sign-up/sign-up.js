@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import validator from "validator";
 import config from "./../config";
 import { Link } from "react-router-dom";
-import ChoreUpContext from './../choreUpContext';
+import ChoreUpContext from "./../choreUpContext";
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class SignUp extends React.Component {
         touched: false,
       },
       isEmailInDb: false,
-      name:{
+      name: {
         value: "",
         touched: false,
       },
@@ -50,10 +50,10 @@ export default class SignUp extends React.Component {
     });
   }
 
-  updateName(name){
+  updateName(name) {
     this.setState({
-      name: {value:name,touched:true}
-    })
+      name: { value: name, touched: true },
+    });
   }
 
   validateEmail() {
@@ -94,14 +94,14 @@ export default class SignUp extends React.Component {
     }
   }
 
-  validateName(){
+  validateName() {
     const name = this.state.name.value.trim();
-    const nameRegex = /^[a-zA-Z]+$/
+    const nameRegex = /^[a-zA-Z]+$/;
     //Regex checks to make sure that the name only contains letters
-    if (name.length === 0){
+    if (name.length === 0) {
       return "First name is required";
-    }else if(!nameRegex.test(name)){
-      return "First name must only contain letters"
+    } else if (!nameRegex.test(name)) {
+      return "First name must only contain letters";
     }
   }
 
@@ -147,8 +147,8 @@ export default class SignUp extends React.Component {
               .then((response) => response.json())
               .then((data) => {
                 this.context.updateIsSignedIn(true);
-                this.context.updateUserId(data.id)
-                this.props.history.push('/join-or-create-family')
+                this.context.updateUserId(data.id);
+                this.props.history.push("/join-or-create-family");
               });
           });
         } else {
@@ -162,7 +162,7 @@ export default class SignUp extends React.Component {
       <>
         <div className="sign-on-container">
           <h2>Create an account</h2>
-          <br/>
+          <br />
           <div id="form-container">
             <div id="form-section">
               <form
@@ -170,7 +170,7 @@ export default class SignUp extends React.Component {
                 onSubmit={(e) => this.handleSubmit(e)}
               >
                 <div className="form-group">
-                <div className="form-field" id="user_name">
+                  <div className="form-field" id="user_name">
                     <div>
                       <i className="fa fa-user"></i>
                     </div>
@@ -183,7 +183,7 @@ export default class SignUp extends React.Component {
                   </div>
                   <small className="error">
                     {this.state.name.touched && (
-                      <ValidationError message = {this.validateName()} />
+                      <ValidationError message={this.validateName()} />
                     )}
                   </small>
                   <div className="form-field" id="email">
@@ -218,8 +218,8 @@ export default class SignUp extends React.Component {
                     />
                   </div>
                   <small id="password-requirement">
-                    Use 8 or more characters with a mix of upper & lower case letters, numbers &
-                    symbols
+                    Use 8 or more characters with a mix of upper & lower case
+                    letters, numbers & symbols
                   </small>
                   <small className="error">
                     {this.state.password.touched && (
