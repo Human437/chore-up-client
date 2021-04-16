@@ -127,6 +127,7 @@ export default class SignIn extends React.Component {
                       type="text"
                       placeholder="Email"
                       onChange={(e) => this.updateEmail(e.target.value)}
+                      className="sign-on-input"
                     />
                   </div>
                   <small className="error">
@@ -145,6 +146,7 @@ export default class SignIn extends React.Component {
                       type="password"
                       placeholder="Password"
                       onChange={(e) => this.updatePassword(e.target.value)}
+                      className="sign-on-input"
                     />
                   </div>
                   <small className="error">

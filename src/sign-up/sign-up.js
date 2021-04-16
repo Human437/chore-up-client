@@ -178,6 +178,7 @@ export default class SignUp extends React.Component {
                       type="text"
                       placeholder="First Name"
                       onChange={(e) => this.updateName(e.target.value)}
+                      className="sign-on-input"
                     />
                   </div>
                   <small className="error">
@@ -193,6 +194,7 @@ export default class SignUp extends React.Component {
                       type="text"
                       placeholder="Email"
                       onChange={(e) => this.updateEmail(e.target.value)}
+                      className="sign-on-input"
                     />
                   </div>
                   <small className="error">
@@ -212,6 +214,7 @@ export default class SignUp extends React.Component {
                       type="password"
                       placeholder="Enter a strong password"
                       onChange={(e) => this.updatePassword(e.target.value)}
+                      className="sign-on-input"
                     />
                   </div>
                   <small id="password-requirement">
@@ -233,6 +236,7 @@ export default class SignUp extends React.Component {
                       onChange={(e) =>
                         this.updateConfirmPassword(e.target.value)
                       }
+                      className="sign-on-input"
                     />
                   </div>
                   <small className="error">
