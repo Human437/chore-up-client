@@ -84,9 +84,9 @@ export default class Management extends React.Component {
   }
 
   render() {
-    let isAdminOnlyMember = true
-    if(this.state.familyMembers.length > 1){
-      isAdminOnlyMember = false
+    let isAdminOnlyMember = true;
+    if (this.state.familyMembers.length > 1) {
+      isAdminOnlyMember = false;
     }
     if (this.context.isSignedIn && this.context.isAdmin) {
       return (
@@ -100,33 +100,35 @@ export default class Management extends React.Component {
               {/* Only admins of the family should be able to see this page and manage users
               Admins should be able to remove users */}
               <div id="members">
-                {this.state.familyMembers.filter(member => !member.is_admin).map((member, index) => {
-                  // Doesn't show the admin family member as a member so the admin can't kick themself
-                  return (
-                    <div key={member.user_id} className="family_member">
-                      <div className="member-info">
-                        <h4>Name: {member.name}</h4>
-                        <h4>Level: {member.level}</h4>
-                        <h4>XP Till Level Up: {member.xp_till_level_up}</h4>
-                        <h4>Email: {member.email}</h4>
+                {this.state.familyMembers
+                  .filter((member) => !member.is_admin)
+                  .map((member, index) => {
+                    // Doesn't show the admin family member as a member so the admin can't kick themself
+                    return (
+                      <div key={member.user_id} className="family_member">
+                        <div className="member-info">
+                          <h4>Name: {member.name}</h4>
+                          <h4>Level: {member.level}</h4>
+                          <h4>XP Till Level Up: {member.xp_till_level_up}</h4>
+                          <h4>Email: {member.email}</h4>
+                        </div>
+                        <button
+                          data-index={index}
+                          data-family_member={member.id}
+                          onClick={(e) => {
+                            this.handleKickMember(e);
+                          }}
+                          className="kick-btn"
+                        >
+                          Kick
+                        </button>
                       </div>
-                      <button
-                        data-index={index}
-                        data-family_member={member.id}
-                        onClick={(e) => {
-                          this.handleKickMember(e);
-                        }}
-                        className="kick-btn"
-                      >
-                        Kick
-                      </button>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
-              {isAdminOnlyMember && <h3 id="only-fam-member">
-                        You are the only family member
-                      </h3>}
+              {isAdminOnlyMember && (
+                <h3 id="only-fam-member">You are the only family member</h3>
+              )}
             </div>
             <div className="management-item">
               <h2>Code to join family</h2>
