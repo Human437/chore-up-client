@@ -84,6 +84,10 @@ export default class Management extends React.Component {
   }
 
   render() {
+    let isAdminOnlyMember = true
+    if(this.state.familyMembers.length > 1){
+      isAdminOnlyMember = false
+    }
     if (this.context.isSignedIn && this.context.isAdmin) {
       return (
         <>
@@ -119,15 +123,12 @@ export default class Management extends React.Component {
                         </button>
                       </div>
                     );
-                  } else {
-                    return (
-                      <h3 id="only-fam-member">
-                        You are the only family member
-                      </h3>
-                    );
                   }
                 })}
               </div>
+              {isAdminOnlyMember && <h3 id="only-fam-member">
+                        You are the only family member
+                      </h3>}
             </div>
             <div className="management-item">
               <h2>Code to join family</h2>
