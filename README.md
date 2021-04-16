@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Chore Up
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+When it comes to young and small children, exposing them to responsibility is important, but not necessarily the easiest thing to do. Chore Up aims to gamify doing chores  to make doing chores seem more interesting and to teach them that they will be held accountable. By marking a chore as done, the child is communicating that they have  
+the task at hand and helps to build trust between the child and the parent. Should the child have lied about completion it is up to the parent to decide what the appropriate  
+couse of action is considering the child has now not only lied but also disregarded their responsibility.
 
-## Available Scripts
+This is the front-end client of the app. You can view it live [here](https://chore-up-client.vercel.app/)!
 
-In the project directory, you can run:
+To check out the app, you can create your account and make a family or join the dummy family provided. There you can either create chores or mark chores as done.
 
-### `npm start`
+#### Dummy Admin Account Info
+- Email: john-doe@test.com
+- Password: aB3!bnmv
+- Dummy Family Code: f3Zg5wq2
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Dummy User Account Info
+- Email: jake-doe@test.com
+- Password: aB3!bnmv
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### New Admin Demo
+![](./src/images/screenShots/newAdmin.gif)
 
-### `npm test`
+### New Regular User Demo
+![](./src/images/screenShots/newRegUser.gif)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Returning Admin Demo
+![](./src/images/screenShots/returningAdmin.gif)
 
-### `npm run build`
+### Returning Regular User Demo
+![](./src/images/screenShots/returningRegUser.gif)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Technology Used
+- React
+  - Create React App
+  - React Router
+- HTML 5
+- CSS
+- Vercel
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Back-end
+This client should be used in conjunction with the API made for this project which can be found [here](https://github.com/Human437/chore-up-api).
