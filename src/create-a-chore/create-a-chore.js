@@ -66,7 +66,7 @@ export default class CreateAChore extends React.Component {
   }
 
   validateReward() {
-    const reward = Number(this.state.reward.value.trim());
+    const reward = this.state.reward.value;
     if (reward % 10 !== 0) {
       return "Rewards must be a multiple of 10";
     }
