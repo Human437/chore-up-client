@@ -1,0 +1,119 @@
+
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 8vh used in conjuction with moblie to make nav full screen */
+  min-height: 8vh; 
+  background-color: #1e8264;
+  font-family: 'Poppins', sans-serif;
+  padding: 0vw 2vw
+}
+
+.logo{
+  color:rgb(226,226,226);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 20px;
+}
+
+#chore-up-logo{
+  text-decoration: none;
+  color:rgb(226,226,226)
+}
+
+.nav-links{
+  display: flex;
+  width: 35%;
+  justify-content:flex-end;
+}
+
+.nav-links li{
+  list-style: none;
+  padding-right: 10px;
+}
+
+.nav-links a{
+  color:rgb(226,226,226);
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.burger{
+  display: none;
+  cursor: pointer;
+}
+
+.burger div{
+  width: 25px;
+  height: 3px;
+  background-color: rgb(226,226,226);
+  margin:5px;
+  transition: all 0.3s ease;
+}
+
+/* You can add multiple screen break points to make stuff look nicer at various screen sizes */
+@media screen and (max-width:1024px){
+  .nav-links{
+    width: 60%;
+  }
+}
+
+/* moblie view */
+@media screen and (max-width:768px){
+  body{
+    overflow: hidden;
+  }
+  nav{
+    justify-content: space-around;
+  }
+  .nav-links{
+    position: fixed;
+    right:0px;
+    /* 92vh used in conjuction with moblie to make nav full screen */
+    height: 92vh;
+    top: 8vh;
+    background-color: #1e8264;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    transform: translate(100%);
+    transition: transform 0.5s ease-in;
+  }
+  .nav-links li{
+    opacity: 0;
+  }
+  .burger{
+    display: block;
+  }
+}
+
+.nav-active{
+  transform: translate(0%);
+}
+
+@keyframes navLinkFade{
+  from{
+    opacity: 0;
+    transform: translate(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translate(0px);
+  }
+}
+
+.toggle .line1{
+  transform: rotate(-45deg) translate(-5px,6px);
+}
+.toggle .line2{
+  opacity: 0;
+}
+.toggle .line3{
+  transform: rotate(45deg) translate(-5px,-6px);
+}
