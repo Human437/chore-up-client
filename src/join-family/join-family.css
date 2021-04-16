@@ -1,0 +1,26 @@
+#join-family-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#join-family-header {
+  font-size: 50px;
+}
+#join-family-submit-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #1e8264;
+  color: white;
+  font-family: "Poppins";
+  margin: 7px 0px;
+  font-size: 20px;
+}
+#join-family-input {
+  border: solid;
+  border-radius: 5px;
+  padding: 7px 25px;
+  width: 300px;
+}
