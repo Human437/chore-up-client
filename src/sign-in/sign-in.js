@@ -108,9 +108,8 @@ export default class SignIn extends React.Component {
     return (
       <>
         <div className="sign-on-container">
-          <Link to="/">
-            <h2 id="heading-sign-on">Chore Up</h2>
-          </Link>
+          <h2>Sign in to your account</h2>
+          <br></br>
           <div id="form-container">
             <div id="form-section">
               <form
