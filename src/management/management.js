@@ -119,6 +119,8 @@ export default class Management extends React.Component {
                         </button>
                       </div>
                     );
+                  }else{
+                    return <h3 id="only-fam-member">You are the only family member</h3>
                   }
                 })}
               </div>
