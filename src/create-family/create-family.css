@@ -1,0 +1,36 @@
+#create-family-page {
+  display: flex;
+  flex-direction: column;
+  height: 92vh;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+#created-family-code {
+  color: red;
+}
+#created-family-btn-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.created-family-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #5351bb;
+  color: white;
+  font-family: "Poppins";
+  margin: 10px 0px;
+  font-size: 20px;
+}
+@media screen and (max-width: 768px) {
+  #created-family-btn-container {
+    width: 80%;
+  }
+  .created-family-btn {
+    width: 100%;
+  }
+}
