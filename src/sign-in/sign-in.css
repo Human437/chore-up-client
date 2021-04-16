@@ -5,18 +5,6 @@
   padding: 0;
 }
 
-html,body {
-  height: 100%;
-}
-
-body {
-  background-color: rgb(200, 200, 200);
-  font-family: "Poppins";
-  position: relative;
-  text-align: center;
-}
-
-
 #heading-sign-on{
   height: 100px;
   color: rgb(87, 86, 86);
@@ -125,8 +113,7 @@ input {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
-  position:fixed;
+  height: 92vh;
   padding:0;
   margin:0;
 }
