@@ -1,0 +1,33 @@
+#successful-chore-btn-page {
+  display: flex;
+  flex-direction: column;
+  height: 92vh;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+#successful-chore-btn-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.successful-chore-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #5351bb;
+  color: white;
+  font-family: "Poppins";
+  margin: 10px 0px;
+  font-size: 20px;
+}
+@media screen and (max-width: 768px) {
+  #successful-chore-btn-container {
+    width: 80%;
+  }
+  .successful-chore-btn {
+    width: 100%;
+  }
+}
