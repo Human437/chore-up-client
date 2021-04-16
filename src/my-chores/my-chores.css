@@ -1,0 +1,27 @@
+#my-chores-page{
+  text-align: center;
+  height: 90vh;
+  padding: 2vh 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chores{
+  display:flex;
+  width: 80%;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 5px 15px;
+  margin: 1vh 3vw;
+  justify-content: space-between;
+  text-align: left;
+}
+.done-btn{
+  border-color: black;
+  border-width: 2px;
+  width: 20%;
+  background-color: rgb(20, 119, 20);
+  font-size: 20px;
+  color:white;
+}
