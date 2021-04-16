@@ -25,23 +25,25 @@ export default class NavBar extends React.Component {
     const burger = document.querySelector(".burger");
     const nav = document.querySelector(".nav-links");
     const navLinks = document.querySelectorAll(".nav-links li");
-    //Toggle Nav
-    nav.classList.toggle("nav-active");
+    if (window.innerWidth <= 768) {
+      //Toggle Nav
+      nav.classList.toggle("nav-active");
 
-    //Animate Links
-    navLinks.forEach((link, index) => {
-      //Good way to add delay based on the index of the items in the nav
-      if (link.style.animation) {
-        link.style.animation = "";
-      } else {
-        link.style.animation = `navLinkFade 0.5s ease forwards ${
-          index / 7 + 0.3
-        }s`;
-      }
-    });
+      //Animate Links
+      navLinks.forEach((link, index) => {
+        //Good way to add delay based on the index of the items in the nav
+        if (link.style.animation) {
+          link.style.animation = "";
+        } else {
+          link.style.animation = `navLinkFade 0.5s ease forwards ${
+            index / 7 + 0.3
+          }s`;
+        }
+      });
 
-    //Burger Animation
-    burger.classList.toggle("toggle");
+      //Burger Animation
+      burger.classList.toggle("toggle");
+    }
   };
 
   render() {
