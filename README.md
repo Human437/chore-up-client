@@ -11,7 +11,7 @@ To check out the app, you can create your account and make a family or join the 
 #### Dummy Admin Account Info
 - Email: john-doe@test.com
 - Password: aB3!bnmv
-- Dummy Family Code: f3Zg5wq2
+- Dummy Family Code: sGvElaiz
 
 #### Dummy User Account Info
 - Email: jake-doe@test.com
