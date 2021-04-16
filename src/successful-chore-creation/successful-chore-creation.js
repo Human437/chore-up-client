@@ -13,16 +13,15 @@ export default class SuccessfulChoreCreation extends React.Component {
   render(){
     return(
       <>
-        <main role="main">
+        <main role="main" id ="successful-chore-btn-page">
           <header>
             <h1>Successfully Created New Chore</h1>
           </header>
-          <section>
-            <button onClick={(e) => {this.props.history.push('/create-a-chore')}}>Create another chore</button>
-            <button onClick={(e) => {this.props.history.push('/management')}}>Return to management page</button>
+          <section id ="successful-chore-btn-container">
+            <button className ="successful-chore-btn" onClick={(e) => {this.props.history.push('/create-a-chore')}}>Create another chore</button>
+            <button className ="successful-chore-btn" onClick={(e) => {this.props.history.push('/management')}}>Return to management page</button>
           </section>
         </main>
-        <footer role="content-info">Footer</footer>
       </>
     )
   }
