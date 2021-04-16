@@ -4,7 +4,6 @@ import ValidationError from "./../validationError";
 import bcrypt from "bcryptjs";
 import validator from "validator";
 import config from "./../config";
-import { Link } from "react-router-dom";
 import ChoreUpContext from "./../choreUpContext";
 
 export default class SignUp extends React.Component {
