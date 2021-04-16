@@ -51,7 +51,7 @@ export default class NavBar extends React.Component {
       return (
         <>
           <nav role="navigation">
-            <div class="logo">
+            <div className="logo">
               <Link to="/" id="chore-up-logo">
                 <img
                   src={Favicon}
@@ -87,10 +87,10 @@ export default class NavBar extends React.Component {
                 </Link>
               </li>
             </ul>
-            <div class="burger" onClick={this.navSlide}>
-              <div class="line1"></div>
-              <div class="line2"></div>
-              <div class="line3"></div>
+            <div className="burger" onClick={this.navSlide}>
+              <div className="line1"></div>
+              <div className="line2"></div>
+              <div className="line3"></div>
             </div>
           </nav>
         </>
@@ -99,7 +99,7 @@ export default class NavBar extends React.Component {
       return (
         <>
           <nav role="navigation">
-            <div class="logo">
+            <div className="logo">
               <Link to="/" id="chore-up-logo">
                 <img
                   src={Favicon}
@@ -129,10 +129,10 @@ export default class NavBar extends React.Component {
                 </Link>
               </li>
             </ul>
-            <div class="burger" onClick={this.navSlide}>
-              <div class="line1"></div>
-              <div class="line2"></div>
-              <div class="line3"></div>
+            <div className="burger" onClick={this.navSlide}>
+              <div className="line1"></div>
+              <div className="line2"></div>
+              <div className="line3"></div>
             </div>
           </nav>
         </>
@@ -141,7 +141,7 @@ export default class NavBar extends React.Component {
       return (
         <>
           <nav role="navigation">
-            <div class="logo">
+            <div className="logo">
               <Link to="/" id="chore-up-logo">
                 <img
                   src={Favicon}
@@ -159,10 +159,10 @@ export default class NavBar extends React.Component {
                 <Link to="/sign-up">Sign Up</Link>
               </li>
             </ul>
-            <div class="burger" onClick={this.navSlide}>
-              <div class="line1"></div>
-              <div class="line2"></div>
-              <div class="line3"></div>
+            <div className="burger" onClick={this.navSlide}>
+              <div className="line1"></div>
+              <div className="line2"></div>
+              <div className="line3"></div>
             </div>
           </nav>
         </>
