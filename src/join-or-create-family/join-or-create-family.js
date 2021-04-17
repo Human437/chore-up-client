@@ -27,25 +27,29 @@ export default class JoinOrCreateFamily extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <main id="join-create-family-page">
-          <h1 id="join-create-family-header">Join or Create a Family</h1>
-          <button
-            id="create-a-family-btn"
-            onClick={() => this.handleCreateFamilyBtn()}
-          >
-            Create a Family
-          </button>
-          <br />
-          <button
-            id="join-a-family-btn"
-            onClick={() => this.props.history.push("/join-family")}
-          >
-            Join a Family
-          </button>
-        </main>
-      </>
-    );
+    if (this.context.isSignedIn) {
+      return (
+        <>
+          <main id="join-create-family-page">
+            <h1 id="join-create-family-header">Join or Create a Family</h1>
+            <button
+              id="create-a-family-btn"
+              onClick={() => this.handleCreateFamilyBtn()}
+            >
+              Create a Family
+            </button>
+            <br />
+            <button
+              id="join-a-family-btn"
+              onClick={() => this.props.history.push("/join-family")}
+            >
+              Join a Family
+            </button>
+          </main>
+        </>
+      );
+    } else {
+      return <h1>You must be signed in to view this page</h1>;
+    }
   }
 }

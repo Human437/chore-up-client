@@ -141,117 +141,121 @@ export default class CreateAChore extends React.Component {
   }
 
   render() {
-    let family_members;
-    if (this.state.familyMembers.length === 0) {
-      family_members = <option value={null}>No Family Members</option>;
+    if (this.context.isSignedIn && this.context.isAdmin) {
+      let family_members;
+      if (this.state.familyMembers.length === 0) {
+        family_members = <option value={null}>No Family Members</option>;
+      } else {
+        family_members = this.state.familyMembers.map((member, index) => {
+          return (
+            <option key={member.id} value={member.id}>
+              {member.name}
+            </option>
+          );
+        });
+      }
+      return (
+        <>
+          <main role="main" id="create-a-chore-page">
+            <div className="chore-item">
+              <header>
+                <h1 id="chore-header">Create a new chore</h1>
+              </header>
+            </div>
+            <section className="chore-item">
+              <form id="chore-creator" onSubmit={(e) => this.handleSubmit(e)}>
+                <section className="form-section overview-section">
+                  <label htmlFor="dream-title" className="chore-label">
+                    Chore Name
+                  </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="dream-title"
+                    placeholder="Chore Name here"
+                    required
+                    onChange={(e) => {
+                      this.updateChoreName(e.target.value);
+                    }}
+                    className="chore-input"
+                  />
+                  <small className="error">
+                    {this.state.name.touched && (
+                      <ValidationError message={this.validateChoreName()} />
+                    )}
+                  </small>
+                </section>
+                <section className="form-section overview-section">
+                  <label htmlFor="dream-title" className="chore-label">
+                    Comments
+                  </label>
+                  <br />
+                  <textarea
+                    name="comments"
+                    id="chore-text-area"
+                    placeholder="Write comments here"
+                    onChange={(e) => {
+                      this.updateComments(e.target.value);
+                    }}
+                  ></textarea>
+                </section>
+                <section className="form-section overview-section">
+                  <label htmlFor="dream-title" className="chore-label">
+                    Reward
+                  </label>
+                  <br />
+                  <input
+                    type="number"
+                    name="dream-title"
+                    placeholder="XP here"
+                    required
+                    onChange={(e) => {
+                      this.updateReward(e.target.value);
+                    }}
+                    className="chore-input"
+                  />
+                  <small className="error">
+                    {this.state.reward.touched && (
+                      <ValidationError message={this.validateReward()} />
+                    )}
+                  </small>
+                </section>
+                <section className="form-section overview-section">
+                  <label htmlFor="dream-title" className="chore-label">
+                    Responsible
+                  </label>
+                  <br />
+                  <select
+                    name="family_members"
+                    id="chore-select"
+                    value={this.state.selectedFamilyMember}
+                    onChange={(e) => {
+                      this.updateSelectedFamilyMember(e.target.value);
+                    }}
+                    required
+                  >
+                    {family_members}
+                  </select>
+                </section>
+                <section className="chore-button-section">
+                  <button
+                    type="submit"
+                    className="submit-reset-btn"
+                    disabled={this.validateChoreName() || this.validateReward()}
+                  >
+                    Submit
+                  </button>
+                  <button type="reset" className="submit-reset-btn">
+                    Reset
+                  </button>
+                </section>
+              </form>
+            </section>
+          </main>
+        </>
+      );
     } else {
-      family_members = this.state.familyMembers.map((member, index) => {
-        return (
-          <option key={member.id} value={member.id}>
-            {member.name}
-          </option>
-        );
-      });
+      return <h1>You must be signed in as an admin to view this page</h1>;
     }
-    return (
-      <>
-        <main role="main" id="create-a-chore-page">
-          <div className="chore-item">
-            <header>
-              <h1 id="chore-header">Create a new chore</h1>
-            </header>
-          </div>
-          <section className="chore-item">
-            <form id="chore-creator" onSubmit={(e) => this.handleSubmit(e)}>
-              <section className="form-section overview-section">
-                <label htmlFor="dream-title" className="chore-label">
-                  Chore Name
-                </label>
-                <br />
-                <input
-                  type="text"
-                  name="dream-title"
-                  placeholder="Chore Name here"
-                  required
-                  onChange={(e) => {
-                    this.updateChoreName(e.target.value);
-                  }}
-                  className="chore-input"
-                />
-                <small className="error">
-                  {this.state.name.touched && (
-                    <ValidationError message={this.validateChoreName()} />
-                  )}
-                </small>
-              </section>
-              <section className="form-section overview-section">
-                <label htmlFor="dream-title" className="chore-label">
-                  Comments
-                </label>
-                <br />
-                <textarea
-                  name="comments"
-                  id="chore-text-area"
-                  placeholder="Write comments here"
-                  onChange={(e) => {
-                    this.updateComments(e.target.value);
-                  }}
-                ></textarea>
-              </section>
-              <section className="form-section overview-section">
-                <label htmlFor="dream-title" className="chore-label">
-                  Reward
-                </label>
-                <br />
-                <input
-                  type="number"
-                  name="dream-title"
-                  placeholder="XP here"
-                  required
-                  onChange={(e) => {
-                    this.updateReward(e.target.value);
-                  }}
-                  className="chore-input"
-                />
-                <small className="error">
-                  {this.state.reward.touched && (
-                    <ValidationError message={this.validateReward()} />
-                  )}
-                </small>
-              </section>
-              <section className="form-section overview-section">
-                <label htmlFor="dream-title" className="chore-label">
-                  Responsible
-                </label>
-                <br />
-                <select
-                  name="family_members"
-                  id="chore-select"
-                  value={this.state.selectedFamilyMember}
-                  onChange={(e) => {
-                    this.updateSelectedFamilyMember(e.target.value);
-                  }}
-                  required
-                >
-                  {family_members}
-                </select>
-              </section>
-              <section className="chore-button-section">
-                <button
-                  type="submit"
-                  className="submit-reset-btn"
-                  disabled={this.validateChoreName() || this.validateReward()}
-                >
-                  Submit
-                </button>
-                <button type="reset" className="submit-reset-btn">
-                  Reset
-                </button>
-              </section>
-            </form>
-          </section>
-        </main>
-      </>
-    );
   }
 }

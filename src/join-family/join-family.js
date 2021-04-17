@@ -72,37 +72,42 @@ export default class JoinFamily extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <main id="join-family-page">
-          <h1 id="join-family-header">Join a Family</h1>
-          <br />
-          <form id="join-family-form" onSubmit={(e) => this.handleSubmit(e)}>
-            <input
-              type="text"
-              placeholder="Family Code"
-              id="join-family-input"
-              onChange={(e) => this.updateFamilyCode(e.target.value)}
-            />
+    if (this.context.isSignedIn) {
+      return (
+        <>
+          <main id="join-family-page">
+            <h1 id="join-family-header">Join a Family</h1>
             <br />
-            <small className="error">
-              {this.state.familyCode.touched && (
-                <ValidationError message={this.validateFamilyCode()} />
-              )}
-              {!this.state.familyCodeInDb && this.state.familyCode.touched && (
-                <ValidationError message="The family code entered is not associated with any family" />
-              )}
-            </small>
-            <button
-              type="submit"
-              id="join-family-submit-btn"
-              disabled={this.validateFamilyCode()}
-            >
-              Join Family
-            </button>
-          </form>
-        </main>
-      </>
-    );
+            <form id="join-family-form" onSubmit={(e) => this.handleSubmit(e)}>
+              <input
+                type="text"
+                placeholder="Family Code"
+                id="join-family-input"
+                onChange={(e) => this.updateFamilyCode(e.target.value)}
+              />
+              <br />
+              <small className="error">
+                {this.state.familyCode.touched && (
+                  <ValidationError message={this.validateFamilyCode()} />
+                )}
+                {!this.state.familyCodeInDb &&
+                  this.state.familyCode.touched && (
+                    <ValidationError message="The family code entered is not associated with any family" />
+                  )}
+              </small>
+              <button
+                type="submit"
+                id="join-family-submit-btn"
+                disabled={this.validateFamilyCode()}
+              >
+                Join Family
+              </button>
+            </form>
+          </main>
+        </>
+      );
+    } else {
+      return <h1>You must be signed in to view this page</h1>;
+    }
   }
 }

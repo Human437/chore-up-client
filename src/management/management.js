@@ -141,7 +141,7 @@ export default class Management extends React.Component {
       return (
         <>
           <h1>
-            You must be signed in as a admin to view the family management page
+            You must be signed in as an admin to view the family management page
           </h1>
         </>
       );

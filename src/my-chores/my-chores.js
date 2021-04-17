@@ -1,6 +1,7 @@
 import React from "react";
 import "./my-chores.css";
 import config from "./../config";
+import ChoreUpContext from "./../choreUpContext";
 
 export default class MyChores extends React.Component {
   constructor(props) {
@@ -11,6 +12,8 @@ export default class MyChores extends React.Component {
       userLevel: 1,
     };
   }
+
+  static contextType = ChoreUpContext;
 
   getUserChores() {
     fetch(
@@ -48,7 +51,9 @@ export default class MyChores extends React.Component {
     let userChoresArray = this.state.userChoresArray;
     const chore_id = e.target.dataset.chore_id;
     const value = e.target.dataset.value;
-    const index = userChoresArray.findIndex(chore => chore.chore_id === Number(chore_id))
+    const index = userChoresArray.findIndex(
+      (chore) => chore.chore_id === Number(chore_id)
+    );
     userChoresArray.splice(index, 1);
     this.setState({ userChoresArray: userChoresArray });
     fetch(`${config.API_Chores_Endpoint}/${chore_id}`, {
@@ -92,48 +97,52 @@ export default class MyChores extends React.Component {
   }
 
   render() {
-    let incompleteChores = 0;
-    for (let i = 0; i < this.state.userChoresArray.length; i++) {
-      if (!this.state.userChoresArray[i].done) {
-        incompleteChores += 1;
+    if (this.context.isSignedIn) {
+      let incompleteChores = 0;
+      for (let i = 0; i < this.state.userChoresArray.length; i++) {
+        if (!this.state.userChoresArray[i].done) {
+          incompleteChores += 1;
+        }
       }
-    }
-    let choresHtml;
-    if (this.state.userChoresArray.length === 0 || incompleteChores === 0) {
-      choresHtml = <h2>There are currently no chores assigned to you.</h2>;
-    } else {
-      choresHtml = this.state.userChoresArray
-        .filter((chore) => !chore.done)
-        .map((chore, index) => {
-          return (
-            <div key={chore.chore_id} className="chores">
-              <div className="chore-info">
-                <h3>Chore: {chore.name}</h3>
-                <h4>Value: {chore.value}</h4>
-                <p>Comments: {chore.comments}</p>
+      let choresHtml;
+      if (this.state.userChoresArray.length === 0 || incompleteChores === 0) {
+        choresHtml = <h2>There are currently no chores assigned to you.</h2>;
+      } else {
+        choresHtml = this.state.userChoresArray
+          .filter((chore) => !chore.done)
+          .map((chore, index) => {
+            return (
+              <div key={chore.chore_id} className="chores">
+                <div className="chore-info">
+                  <h3>Chore: {chore.name}</h3>
+                  <h4>Value: {chore.value}</h4>
+                  <p>Comments: {chore.comments}</p>
+                </div>
+                <button
+                  data-index={index}
+                  data-chore_id={chore.chore_id}
+                  data-value={chore.value}
+                  onClick={(e) => {
+                    this.handleDone(e);
+                  }}
+                  className="done-btn"
+                >
+                  Mark As Done
+                </button>
               </div>
-              <button
-                data-index={index}
-                data-chore_id={chore.chore_id}
-                data-value={chore.value}
-                onClick={(e) => {
-                  this.handleDone(e);
-                }}
-                className="done-btn"
-              >
-                Mark As Done
-              </button>
-            </div>
-          );
-        });
+            );
+          });
+      }
+      return (
+        <>
+          <main role="main" id="my-chores-page">
+            <h1>Assigned Chores</h1>
+            {choresHtml}
+          </main>
+        </>
+      );
+    } else {
+      return <h1>You must be signed in to view this page</h1>;
     }
-    return (
-      <>
-        <main role="main" id="my-chores-page">
-          <h1>Assigned Chores</h1>
-          {choresHtml}
-        </main>
-      </>
-    );
   }
 }

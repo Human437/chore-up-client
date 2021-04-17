@@ -1,6 +1,7 @@
 import React from "react";
 import "./my-profile.css";
 import config from "./../config";
+import ChoreUpContext from "./../choreUpContext";
 
 export default class MyProfile extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ export default class MyProfile extends React.Component {
       xp_till_level_up: null,
     };
   }
+
+  static contextType = ChoreUpContext;
 
   getUserInfo() {
     fetch(`${config.API_Users_Endpoint}/${this.props.match.params.id}`, {
@@ -36,17 +39,21 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <main role="main" id="my-profile-page">
-          <div id="my-info">
-            <h1>Hello, {this.state.name}</h1>
-            <h3>User Id: {this.state.id}</h3>
-            <h3>Level: {this.state.level}</h3>
-            <h3>XP till level up: {this.state.xp_till_level_up}</h3>
-          </div>
-        </main>
-      </>
-    );
+    if (this.context.isSignedIn) {
+      return (
+        <>
+          <main role="main" id="my-profile-page">
+            <div id="my-info">
+              <h1>Hello, {this.state.name}</h1>
+              <h3>User Id: {this.state.id}</h3>
+              <h3>Level: {this.state.level}</h3>
+              <h3>XP till level up: {this.state.xp_till_level_up}</h3>
+            </div>
+          </main>
+        </>
+      );
+    } else {
+      return <h1>You must be signed in to view this page</h1>;
+    }
   }
 }
