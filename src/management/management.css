@@ -22,6 +22,7 @@
   margin: 1vh 0vw;
   justify-content: space-between;
   text-align: left;
+  align-items: center;
 }
 .kick-btn {
   border-color: black;
