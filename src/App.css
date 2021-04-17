@@ -6,3 +6,7 @@
 h1 {
   font-size: 50px;
 }
+html,body{
+  overflow-x: hidden;
+  max-width: 100%;
+}
