@@ -14,11 +14,7 @@ export default class HomePage extends React.Component {
           <header role="banner">
             <h1 id="landing-page-h1">Chore Up</h1>
           </header>
-          <section>
-            <header id="landing-page-h2">
-              <h2>Keeping track of chores, so you don't have to</h2>
-            </header>
-          </section>
+          <h2 id='landing-summary'>Sign up, create a family and share your code to start assigning chores to family members. Earn rewards on chore completion!</h2>
         </main>
       </>
     );
