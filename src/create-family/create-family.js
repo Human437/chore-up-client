@@ -77,65 +77,75 @@ export default class CreateFamily extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.context.isAlreadyAdminOfAFamily) {
+    if (!this.context.isAlreadyAdminOfAFamily && this.context.isSignedIn) {
       this.makeFamilyCode();
       this.context.updateIsAlreadyAdminOfAFamily(true);
     }
   }
 
   render() {
-    let familyCode;
-    if (this.state.familyCode.value === "") {
-      familyCode = this.context.familyCode;
+    if(this.context.isSignedIn){
+      let familyCode;
+      if (this.state.familyCode.value === "") {
+        familyCode = this.context.familyCode;
+      } else {
+        familyCode = this.state.familyCode.value;
+      }
+      return (
+        <>
+          <main id="create-family-page">
+            <h1>Created New Family</h1>
+            <h2>Family Code</h2>
+            <h3 id="created-family-code">{familyCode}</h3>
+            <h4>
+              Please make note of the family code so that your family members can
+              use the code to join your family
+            </h4>
+            <br />
+            <div id="created-family-btn-container">
+              <button
+                className="created-family-btn"
+                onClick={() => this.props.history.push(`/create-a-chore`)}
+              >
+                Create a Chore
+              </button>
+              {/* <br/> */}
+              <button
+                className="created-family-btn"
+                onClick={() => this.props.history.push(`/management`)}
+              >
+                Visit Management Page
+              </button>
+              {/* <br/> */}
+              <button
+                className="created-family-btn"
+                onClick={() =>
+                  this.props.history.push(`/my-chores/${this.context.userId}`)
+                }
+              >
+                View My Chores
+              </button>
+              {/* <br/> */}
+              <button
+                className="created-family-btn"
+                onClick={() =>
+                  this.props.history.push(`/my-profile/${this.context.userId}`)
+                }
+              >
+                View Profile
+              </button>
+            </div>
+          </main>
+        </>
+      );
     } else {
-      familyCode = this.state.familyCode.value;
+      return (
+        <>
+          <h1>
+            You must be signed in to view the family creation page
+          </h1>
+        </>
+      );
     }
-    return (
-      <>
-        <main id="create-family-page">
-          <h1>Created New Family</h1>
-          <h2>Family Code</h2>
-          <h3 id="created-family-code">{familyCode}</h3>
-          <h4>
-            Please make note of the family code so that your family members can
-            use the code to join your family
-          </h4>
-          <br />
-          <div id="created-family-btn-container">
-            <button
-              className="created-family-btn"
-              onClick={() => this.props.history.push(`/create-a-chore`)}
-            >
-              Create a Chore
-            </button>
-            {/* <br/> */}
-            <button
-              className="created-family-btn"
-              onClick={() => this.props.history.push(`/management`)}
-            >
-              Visit Management Page
-            </button>
-            {/* <br/> */}
-            <button
-              className="created-family-btn"
-              onClick={() =>
-                this.props.history.push(`/my-chores/${this.context.userId}`)
-              }
-            >
-              View My Chores
-            </button>
-            {/* <br/> */}
-            <button
-              className="created-family-btn"
-              onClick={() =>
-                this.props.history.push(`/my-profile/${this.context.userId}`)
-              }
-            >
-              View Profile
-            </button>
-          </div>
-        </main>
-      </>
-    );
   }
 }
