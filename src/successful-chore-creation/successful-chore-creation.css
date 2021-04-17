@@ -17,13 +17,13 @@
   border: none;
   border-radius: 5px;
   outline: none;
-  background-color: #4E4CAE;
+  background-color: #4e4cae;
   color: white;
   font-family: "Poppins";
   margin: 10px 0px;
   font-size: 20px;
 }
-.successful-chore-btn:hover{
+.successful-chore-btn:hover {
   cursor: pointer;
 }
 @media screen and (max-width: 768px) {

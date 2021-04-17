@@ -50,13 +50,13 @@
   border: none;
   border-radius: 5px;
   outline: none;
-  background-color: #083D87;
+  background-color: #083d87;
   color: white;
   font-family: "Poppins";
   margin: 10px 0px;
 }
 
-.submit-reset-btn:hover{
+.submit-reset-btn:hover {
   cursor: pointer;
 }
 

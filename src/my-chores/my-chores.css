@@ -32,20 +32,21 @@
 }
 
 @media screen and (max-width: 768px) {
-  .done-btn{
+  .done-btn {
     width: 30%;
     font-size: 15px;
   }
-  .chores{
+  .chores {
     width: 100%;
   }
 }
 @media screen and (max-width: 350px) {
-  .chores{
+  .chores {
     width: 100%;
     flex-direction: column;
   }
-  .done-btn,.chore-info{
+  .done-btn,
+  .chore-info {
     width: 100%;
   }
 }

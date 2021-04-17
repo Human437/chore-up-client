@@ -16,10 +16,10 @@
 
 #landing-page-h1 {
   font-size: 4em;
-  color: #044CA9;
+  color: #044ca9;
 }
 
-#landing-summary{
+#landing-summary {
   text-align: center;
   width: 50%;
   color: #000000;
@@ -27,7 +27,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  #landing-summary{
+  #landing-summary {
     width: 90%;
   }
 }
