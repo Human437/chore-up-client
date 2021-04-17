@@ -62,11 +62,11 @@ nav {
 
 /* moblie view */
 @media screen and (max-width: 768px) {
-  body {
-    overflow: hidden;
-  }
   nav {
     justify-content: space-around;
+  }
+  .overflow-hidden{
+    overflow: hidden;
   }
   .nav-links {
     position: fixed;
@@ -79,9 +79,10 @@ nav {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 50%;
+    width: 100%;
     transform: translate(100%);
     transition: transform 0.5s ease-in;
+    border-top: solid;
   }
   .nav-links li {
     opacity: 0;

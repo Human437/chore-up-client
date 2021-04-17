@@ -25,6 +25,7 @@ export default class NavBar extends React.Component {
     const burger = document.querySelector(".burger");
     const nav = document.querySelector(".nav-links");
     const navLinks = document.querySelectorAll(".nav-links li");
+    const body = document.querySelector("body")
     if (window.innerWidth <= 768) {
       //Toggle Nav
       nav.classList.toggle("nav-active");
@@ -43,6 +44,9 @@ export default class NavBar extends React.Component {
 
       //Burger Animation
       burger.classList.toggle("toggle");
+
+      //Toggle overflow hidden for body
+      body.classList.toggle("overflow-hidden")
     }
   };
 
