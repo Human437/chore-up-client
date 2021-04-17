@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   height: 92vh;
+  text-align: center;
 }
 #join-create-family-header {
   margin-top: 10px;
