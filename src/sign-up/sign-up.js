@@ -187,7 +187,7 @@ export default class SignUp extends React.Component {
                   </small>
                   <div className="form-field" id="email">
                     <div>
-                      <i class="fas fa-envelope-square"></i>
+                      <i className="fas fa-envelope-square"></i>
                     </div>
                     <input
                       type="text"
