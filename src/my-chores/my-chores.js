@@ -46,9 +46,9 @@ export default class MyChores extends React.Component {
 
   handleDone(e) {
     let userChoresArray = this.state.userChoresArray;
-    const index = e.target.dataset.index;
     const chore_id = e.target.dataset.chore_id;
     const value = e.target.dataset.value;
+    const index = userChoresArray.findIndex(chore => chore.chore_id === Number(chore_id))
     userChoresArray.splice(index, 1);
     this.setState({ userChoresArray: userChoresArray });
     fetch(`${config.API_Chores_Endpoint}/${chore_id}`, {
