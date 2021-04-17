@@ -22,9 +22,13 @@
   border-color: black;
   border-width: 2px;
   width: 20%;
-  background-color: rgb(20, 119, 20);
+  background-color: #126312;
   font-size: 25px;
   color: white;
+}
+
+.done-btn:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

@@ -4,7 +4,7 @@ nav {
   align-items: center;
   /* 8vh used in conjuction with moblie to make nav full screen */
   min-height: 8vh;
-  background-color: #1e8264;
+  background-color: #265043;
   font-family: "Poppins", sans-serif;
   padding: 0vw 2vw;
 }
@@ -74,7 +74,7 @@ nav {
     /* 92vh used in conjuction with moblie to make nav full screen */
     height: 92vh;
     top: 8vh;
-    background-color: #1e8264;
+    background-color: #265043;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

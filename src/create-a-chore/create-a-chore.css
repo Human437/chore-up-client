@@ -50,10 +50,19 @@
   border: none;
   border-radius: 5px;
   outline: none;
-  background-color: #0b6efd;
+  background-color: #083D87;
   color: white;
   font-family: "Poppins";
   margin: 10px 0px;
+}
+
+.submit-reset-btn:hover{
+  cursor: pointer;
+}
+
+.submit-reset-btn:disabled {
+  background-color: #031a3a;
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 768px) {

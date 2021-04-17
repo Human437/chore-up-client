@@ -28,9 +28,12 @@
   border-color: black;
   border-width: 2px;
   width: 20%;
-  background-color: red;
+  background-color: #810303;
   font-size: 25px;
   color: white;
+}
+.kick-btn:hover {
+  cursor: pointer;
 }
 #management-page-header {
   text-align: center;
